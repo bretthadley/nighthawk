@@ -1,0 +1,1 @@
+export <%= pascalEntityName %> from './<%= pascalEntityName %>';

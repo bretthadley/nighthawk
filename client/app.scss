@@ -1,0 +1,16 @@
+@import "normalize.css/normalize";
+
+@import "assets/styles/base";
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.4rem;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
