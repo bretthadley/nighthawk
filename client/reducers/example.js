@@ -2,12 +2,12 @@
 const SOMETHING = 'cdx/example/SOMETHING';
 
 // Reducer
-export const defaultState = {};
+export const defaultState = [];
 
 export default function reducer(state = defaultState, action) {
     switch (action.type) {
-        case SOMETHING:
-            return state;
+        case 'MESSAGES_CREATED':
+            return [...state, action.payload];
         default:
             return state;
     }

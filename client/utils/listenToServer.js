@@ -18,13 +18,13 @@ const resourceActions = {
     })
 };
 
-export default function listenToServer(app) {
+export default function listenToServer(app, store) {
     services.forEach((serviceName) => {
         const service = app.service(serviceName);
 
         events.forEach((event) => {
             service.on(event, (payload) => {
-                resourceActions[event](serviceName, payload);
+                store.dispatch(resourceActions[event](serviceName, payload));
             });
         });
     });

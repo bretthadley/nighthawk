@@ -17,7 +17,13 @@ import listenToServer from './utils/listenToServer';
 const store = configureStore(browserHistory, window.__INITIAL_STATE__); // eslint-disable-line
 const history = syncHistoryWithStore(browserHistory, store);
 
-listenToServer(feathersApp);
+listenToServer(feathersApp, store);
+
+const messageService = feathersApp.service('messages');
+
+messageService.create({
+    text: 'hellllooo'
+});
 
 render(
     <AppContainer>
