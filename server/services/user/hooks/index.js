@@ -7,35 +7,25 @@ const auth = require('feathers-authentication').hooks;
 exports.before = {
     all: [],
     find: [
-        auth.verifyToken(),
-        auth.populateUser(),
-        auth.restrictToAuthenticated()
+        ...globalHooks.authHooks
     ],
     get: [
-        auth.verifyToken(),
-        auth.populateUser(),
-        auth.restrictToAuthenticated(),
+        ...globalHooks.authHooks,
         auth.restrictToOwner({ ownerField: 'id' })
     ],
     create: [
         auth.hashPassword()
     ],
     update: [
-        auth.verifyToken(),
-        auth.populateUser(),
-        auth.restrictToAuthenticated(),
+        ...globalHooks.authHooks,
         auth.restrictToOwner({ ownerField: 'id' })
     ],
     patch: [
-        auth.verifyToken(),
-        auth.populateUser(),
-        auth.restrictToAuthenticated(),
+        ...globalHooks.authHooks,
         auth.restrictToOwner({ ownerField: 'id' })
     ],
     remove: [
-        auth.verifyToken(),
-        auth.populateUser(),
-        auth.restrictToAuthenticated(),
+        ...globalHooks.authHooks,
         auth.restrictToOwner({ ownerField: 'id' })
     ]
 };

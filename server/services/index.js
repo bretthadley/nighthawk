@@ -1,7 +1,8 @@
 'use strict';
-const authentication = require('./authentication/index');
-const user = require('./user/index');
-const message = require('./message/index');
+const authentication = require('./authentication');
+const user = require('./user');
+const sprint = require('./sprint');
+const story = require('./story');
 
 const path = require('path');
 const fs = require('fs-extra');
@@ -19,5 +20,6 @@ module.exports = function () {
 
     app.configure(authentication);
     app.configure(user);
-    app.configure(message);
+    app.configure(sprint);
+    app.configure(story);
 };

@@ -1,14 +1,14 @@
 'use strict';
 
 const service = require('feathers-sequelize');
-const message = require('./message-model');
-const hooks = require('./hooks/index');
+const sprint = require('./sprint-model');
+const hooks = require('./hooks');
 
 module.exports = function () {
     const app = this;
 
     const options = {
-        Model: message(app.get('sequelize')),
+        Model: sprint(app.get('sequelize')),
         paginate: {
             default: 5,
             max: 25
@@ -16,14 +16,14 @@ module.exports = function () {
     };
 
     // Initialize our service with any options it requires
-    app.use('/messages', service(options));
+    app.use('/sprint', service(options));
 
     // Get our initialize service to that we can bind hooks
-    const messageService = app.service('/messages');
+    const sprintService = app.service('/sprint');
 
     // Set up our before hooks
-    messageService.before(hooks.before);
+    sprintService.before(hooks.before);
 
     // Set up our after hooks
-    messageService.after(hooks.after);
+    sprintService.after(hooks.after);
 };

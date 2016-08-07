@@ -19,10 +19,14 @@ const history = syncHistoryWithStore(browserHistory, store);
 
 listenToServer(feathersApp, store);
 
-const messageService = feathersApp.service('messages');
+const messageService = feathersApp.service('story');
 
 messageService.create({
-    text: 'hellllooo'
+    title: 'hellllooo',
+    description: 'qwdqawdqwadwqad'
+}, (err, message) => {
+    console.log('===', err, message);
+    // TODO throw this to an action to broadcast
 });
 
 render(

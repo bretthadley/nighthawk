@@ -1,11 +1,11 @@
 'use strict';
 
 const globalHooks = require('../../../hooks/index');
-const hooks = require('feathers-hooks');
-
 
 exports.before = {
-    all: [],
+    all: [
+        // ...globalHooks.authHooks
+    ],
     find: [],
     get: [],
     create: [],

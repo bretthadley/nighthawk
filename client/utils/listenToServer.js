@@ -1,8 +1,8 @@
 /**
  * Created by Brett Hadley on 13/07/2016.
  */
-const services = ['messages'];
-const events = ['created', 'updated', 'removed'];
+const services = ['stories'];
+const events = ['created', 'updated', 'removed', 'serviceError'];
 
 const resourceActions = {
     created: (type, payload) => ({
@@ -24,6 +24,7 @@ export default function listenToServer(app, store) {
 
         events.forEach((event) => {
             service.on(event, (payload) => {
+                console.log('===========', payload);
                 store.dispatch(resourceActions[event](serviceName, payload));
             });
         });
