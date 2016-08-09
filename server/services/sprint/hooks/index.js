@@ -21,8 +21,7 @@ exports.after = {
     all: [],
     find: [],
     get: [],
-    create: [
-    ],
+    create: [],
     update: [],
     patch: [],
     remove: []
