@@ -14,7 +14,9 @@ module.exports = (sequelize) => {
         freezeTableName: true,
         classMethods: {
             associate(models) {
-                Sprint.hasMany(models.Story);
+                Sprint.hasMany(models.Story, {
+                    as: 'stories'
+                });
             }
         }
     });
