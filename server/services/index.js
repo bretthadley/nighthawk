@@ -23,10 +23,11 @@ module.exports = function () {
     app.configure(sprint);
     app.configure(story);
 
-    Object.keys(sequelize.models)
+    const models = sequelize.models;
+    Object.keys(models)
         .map(name => sequelize.models[name])
         .filter(model => model.associate !== undefined)
-        .forEach(model => model.associate());
+        .forEach(model => model.associate(models));
 
     sequelize.sync();
 };

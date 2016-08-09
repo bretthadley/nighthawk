@@ -13,8 +13,8 @@ module.exports = (sequelize) => {
     }, {
         freezeTableName: true,
         classMethods: {
-            associate() {
-                Story.belongsTo(sequelize.models.Sprint,
+            associate(models) {
+                Story.belongsTo(models.Sprint,
                     {
                         allowNull: false
                     }
@@ -22,8 +22,6 @@ module.exports = (sequelize) => {
             }
         }
     });
-
-    Story.sync();
 
     return Story;
 };

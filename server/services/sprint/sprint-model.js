@@ -13,13 +13,11 @@ module.exports = (sequelize) => {
     }, {
         freezeTableName: true,
         classMethods: {
-            associate() {
-                Sprint.hasMany(sequelize.models.Story);
+            associate(models) {
+                Sprint.hasMany(models.Story);
             }
         }
     });
-
-    Sprint.sync();
 
     return Sprint;
 };
