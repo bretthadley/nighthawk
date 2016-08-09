@@ -19,14 +19,23 @@ const history = syncHistoryWithStore(browserHistory, store);
 
 listenToServer(feathersApp, store);
 
-const messageService = feathersApp.service('story');
+const sprintService = feathersApp.service('sprint');
+const storyService = feathersApp.service('story');
 
-messageService.create({
+sprintService.create({
     title: 'hellllooo',
     description: 'qwdqawdqwadwqad'
-}, (err, message) => {
-    console.log('===', err, message);
+}, (err, sprint) => {
+    console.log('===', err, sprint);
     // TODO throw this to an action to broadcast
+
+    storyService.create({
+        title: 'hellllooo',
+        description: 'qwdqawdqwadwqad',
+        SprintId: sprint.id
+    }, (err, story) => {
+        console.log('===', err, story);
+    });
 });
 
 render(

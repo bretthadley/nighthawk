@@ -1,5 +1,6 @@
 'use strict';
 
+const hooks = require('feathers-hooks');
 const globalHooks = require('../../../hooks/index');
 
 exports.before = {
@@ -18,7 +19,9 @@ exports.after = {
     all: [],
     find: [],
     get: [],
-    create: [],
+    create: [
+        hooks.populate('sprintId', { service: 'sprint', field: 'id' })
+    ],
     update: [],
     patch: [],
     remove: []

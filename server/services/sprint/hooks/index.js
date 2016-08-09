@@ -1,6 +1,7 @@
 'use strict';
 
 const globalHooks = require('../../../hooks/index');
+const beforeCreate = require('./beforeCreate');
 
 exports.before = {
     all: [
@@ -8,7 +9,9 @@ exports.before = {
     ],
     find: [],
     get: [],
-    create: [],
+    create: [
+        beforeCreate()
+    ],
     update: [],
     patch: [],
     remove: []
@@ -18,7 +21,8 @@ exports.after = {
     all: [],
     find: [],
     get: [],
-    create: [],
+    create: [
+    ],
     update: [],
     patch: [],
     remove: []

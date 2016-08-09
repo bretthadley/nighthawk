@@ -1,16 +1,25 @@
 const Sequelize = require('sequelize');
 
 module.exports = (sequelize) => {
-    const sprint = sequelize.define('sprints', {
-        text: {
+    const Sprint = sequelize.define('Sprint', {
+        title: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
+        description: {
             type: Sequelize.STRING,
             allowNull: false
         }
     }, {
-        freezeTableName: true
+        freezeTableName: true,
+        classMethods: {
+            associate() {
+                Sprint.hasMany(sequelize.models.Story);
+            }
+        }
     });
 
-    sprint.sync();
+    Sprint.sync();
 
-    return sprint;
+    return Sprint;
 };

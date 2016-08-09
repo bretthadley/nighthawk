@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
 module.exports = (sequelize) => {
-    const Story = sequelize.define('stories', {
+    const Story = sequelize.define('Story', {
         title: {
             type: Sequelize.STRING,
             allowNull: false
@@ -16,7 +16,7 @@ module.exports = (sequelize) => {
             associate() {
                 Story.belongsTo(sequelize.models.Sprint,
                     {
-                        foreignKey: 'sprintId'
+                        allowNull: false
                     }
                 );
             }
