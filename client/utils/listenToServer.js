@@ -1,7 +1,7 @@
 /**
  * Created by Brett Hadley on 13/07/2016.
  */
-const services = ['stories'];
+const services = ['sprint', 'story'];
 const events = ['created', 'updated', 'removed', 'serviceError'];
 
 const resourceActions = {
