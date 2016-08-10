@@ -32,7 +32,8 @@ sprintService.create({
     storyService.create({
         title: 'hellllooo',
         description: 'qwdqawdqwadwqad',
-        SprintId: sprint.id
+        sprintId: sprint.id,
+        brett: 12345
     }, (err, story) => {
         console.log('===', err, story);
     });

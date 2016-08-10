@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
 module.exports = (sequelize) => {
-    const Story = sequelize.define('Story', {
+    const story = sequelize.define('story', {
         title: {
             type: Sequelize.STRING,
             allowNull: false
@@ -14,7 +14,7 @@ module.exports = (sequelize) => {
         freezeTableName: true,
         classMethods: {
             associate(models) {
-                Story.belongsTo(models.Sprint,
+                models.story.belongsTo(models.sprint,
                     {
                         allowNull: false
                     }
@@ -23,5 +23,5 @@ module.exports = (sequelize) => {
         }
     });
 
-    return Story;
+    return story;
 };

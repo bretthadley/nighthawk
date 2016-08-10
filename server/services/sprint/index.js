@@ -4,7 +4,7 @@ const service = require('feathers-sequelize');
 const sprint = require('./sprint-model');
 const hooks = require('./hooks');
 
-module.exports = function () {
+function setupService() {
     const app = this;
 
     const options = {
@@ -14,8 +14,6 @@ module.exports = function () {
             max: 25
         }
     };
-
-    // Initialize our service with any options it requires
     app.use('/sprint', service(options));
 
     // Get our initialize service to that we can bind hooks
@@ -26,4 +24,6 @@ module.exports = function () {
 
     // Set up our after hooks
     sprintService.after(hooks.after);
-};
+}
+
+module.exports = setupService;

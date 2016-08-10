@@ -20,7 +20,7 @@ exports.after = {
     find: [],
     get: [],
     create: [
-        hooks.populate('sprintId', { service: 'sprint', field: 'id' })
+        // hooks.populate('sprintId', { service: 'sprint', field: 'id' })
     ],
     update: [],
     patch: [],

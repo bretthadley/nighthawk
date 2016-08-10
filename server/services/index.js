@@ -7,6 +7,7 @@ const story = require('./story');
 const path = require('path');
 const fs = require('fs-extra');
 const Sequelize = require('sequelize');
+
 module.exports = function () {
     const app = this;
 
@@ -24,6 +25,8 @@ module.exports = function () {
     app.configure(story);
 
     const models = sequelize.models;
+    app.set('models', models);
+
     Object.keys(models)
         .map(name => sequelize.models[name])
         .filter(model => model.associate !== undefined)
