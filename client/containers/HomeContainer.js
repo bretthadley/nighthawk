@@ -3,7 +3,7 @@
  */
 import { connect } from 'react-redux';
 // import * as actions from '../../reducers/something';
-import { RootPage } from '../pages';
+import { HomePage } from '../pages';
 
 const mapStateToProps = state => state;
 
@@ -14,4 +14,4 @@ const mapDispatchToProps = {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(RootPage);
+)(HomePage);
