@@ -1,5 +1,5 @@
 // Actions
-const SOMETHING = 'cdx/example/SOMETHING';
+const SOMETHING = 'nighthawk/example/SOMETHING';
 
 // Reducer
 export const defaultState = [];
