@@ -7,11 +7,11 @@ import { SprintPage } from '../pages';
 
 const mapStateToProps = state => state;
 
-const mapDispatchToProps = {
+const mapDispatchToActions = {
     // ...actions
 };
 
 export default connect(
     mapStateToProps,
-    mapDispatchToProps
+    mapDispatchToActions
 )(SprintPage);

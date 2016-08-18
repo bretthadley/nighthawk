@@ -9,29 +9,26 @@ export const defaultState = [];
 
 export default function reducer(state = defaultState, action) {
     switch (action.type) {
-        case 'SPRINT_CREATED':
-            return [...state, action.payload.sprint];
+        case 'SPRINT_CREATED': // websocket
+        case SPRINT_CREATED: // from action in this reducer
+            return [...state, action.payload];
         default:
             return state;
     }
 }
 
 // Action Creators
-export function createdSprint(sprint) {
+export function createdSprint(payload) {
     return {
         type: SPRINT_CREATED,
-        payload: {
-            sprint
-        }
+        payload
     };
 }
 
-export function createSprintError(error) {
+export function createSprintError(payload) {
     return {
         type: SPRINT_CREATE_ERROR,
-        payload: {
-            error
-        }
+        payload
     };
 }
 
