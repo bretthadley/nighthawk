@@ -3,6 +3,7 @@
  */
 import React, { PropTypes } from 'react';
 import cx from 'classnames';
+import { Grid, GridColumn } from '../Grid';
 import { Card, CardTitle, CardContent } from '../Card';
 
 export default class SprintList extends React.Component {

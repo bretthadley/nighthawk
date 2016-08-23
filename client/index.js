@@ -13,7 +13,9 @@ import feathersApp from '../client/feathers/configureFeathers';
 import { RootContainer } from './containers';
 import routes from './routes';
 import listenToServer from './utils/listenToServer';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
+injectTapEventPlugin();
 const store = configureStore(browserHistory, window.__INITIAL_STATE__); // eslint-disable-line
 const history = syncHistoryWithStore(browserHistory, store);
 

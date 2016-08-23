@@ -4,9 +4,11 @@
  * that the breakpoint fires at.
  */
 $breakpoints: (
-    'xs' 'screen and (max-width: 768px)',
-    'sm' 'screen and (min-width: 769px)',
-    'md' 'screen and (min-width: 992px)',
-    'lg' 'screen and (min-width: 1200px)',
-    'xlg' 'screen and (min-width: 1441px)',
+    'xs' 'screen and (max-width: 480px)',
+    'sm' 'screen and (max-width: 767px)',
+    'md' 'screen and (min-width: 768px)',
+    'lg' 'screen and (min-width: 1280px)',
+    'lg-down' 'screen and (max-width: 1280px)',
+    'xlg' 'screen and (min-width: 1440px)',
+    'xlg-down' 'screen and (max-width: 1440px)'
 )!global;

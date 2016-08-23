@@ -1,5 +1,3 @@
-@import "../../../assets/styles/generic/config";
-
 $responsive:            true!default;
 
 /**
@@ -83,6 +81,38 @@ $class-type:            unquote(".");
     @if $use-silent-classes == true{
         position:relative;
     }
+}
+
+@mixin media-query($mq) {
+
+    $breakpoint-found: false;
+
+    // Loop through the list of breakpoints weâ€™ve provided in our settings file.
+    @each $breakpoint in $breakpoints {
+
+        $alias:     nth($breakpoint, 1);
+        $condition: nth($breakpoint, 2);
+
+        @if $mq == $alias and $condition {
+            $breakpoint-found: true;
+
+            @media #{$condition} {
+                @content;
+            }
+
+        }
+
+    }
+
+    // If the user specifies a non-exitent alias, send them a warning.
+    @if $breakpoint-found == false {
+        @warn "Oops! Breakpoint #{$mq} does not exist."
+    }
+
+}
+
+@function get-gutter($namespace: 'sm') {
+    @return map-get($gutters, $namespace);
 }
 
 
