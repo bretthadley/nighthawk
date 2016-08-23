@@ -52,25 +52,19 @@ describe('Grid/Grid.js tests', () => {
     });
 
     it('should have correct spacing class when given property', () => {
-        const component1 = shallow(<Grid spacing="narrow"><p>Hello</p></Grid>);
-        const component2 = shallow(<Grid spacing="full"><p>Hello</p></Grid>);
-        const component3 = shallow(<Grid spacing="wide"><p>Hello</p></Grid>);
+        const component1 = shallow(<Grid spacing="lg"><p>Hello</p></Grid>);
+        const component2 = shallow(<Grid lgSpacing="sm"><p>Hello</p></Grid>);
+        const component3 = shallow(<Grid xlgSpacing="none"><p>Hello</p></Grid>);
 
-        expect(component1.hasClass(styles['grid--narrow'])).to.equal(true);
-        expect(component1.hasClass(styles['grid--full'])).to.equal(false);
-        expect(component1.hasClass(styles['grid--wide'])).to.equal(false);
+        expect(component1.hasClass(styles['grid--spacing--lg'])).to.equal(true);
 
-        expect(component2.hasClass(styles['grid--full'])).to.equal(true);
-        expect(component2.hasClass(styles['grid--narrow'])).to.equal(false);
-        expect(component2.hasClass(styles['grid--wide'])).to.equal(false);
+        expect(component2.hasClass(styles['lg--grid--spacing--sm'])).to.equal(true);
 
-        expect(component3.hasClass(styles['grid--wide'])).to.equal(true);
-        expect(component3.hasClass(styles['grid--full'])).to.equal(false);
-        expect(component3.hasClass(styles['grid--narrow'])).to.equal(false);
+        expect(component3.hasClass(styles['xlg--grid--spacing--none'])).to.equal(true);
     });
 
-    it('should have custom class when componentClass prop is passed', () => {
-        const component = shallow(<Grid componentClass="custom-class"><p>Hello</p></Grid>);
+    it('should have custom class when className prop is passed', () => {
+        const component = shallow(<Grid className="custom-class"><p>Hello</p></Grid>);
         expect(component.hasClass('custom-class')).to.equal(true);
     });
 });

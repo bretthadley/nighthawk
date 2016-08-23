@@ -29,8 +29,8 @@ describe('Grid/GridColumn.js tests', () => {
         expect(component.hasClass(styles.grid__item)).to.equal(true);
     });
 
-    it('should have the width grid class when given property all', () => {
-        const component = shallow(<GridColumn all="one-whole"><p>Hello</p></GridColumn>);
+    it('should have the width grid class when given property default', () => {
+        const component = shallow(<GridColumn default="one-whole"><p>Hello</p></GridColumn>);
         expect(component.hasClass(styles['one-whole'])).to.equal(true);
     });
 
@@ -68,8 +68,17 @@ describe('Grid/GridColumn.js tests', () => {
         expect(component.hasClass(styles['xlg--one-fifth'])).to.equal(true);
     });
 
-    it('should have custom class when componentClass prop is passed', () => {
-        const component = shallow(<GridColumn componentClass="custom-class"><p>Hello</p></GridColumn>);
+    it('should allow for push/pull grid layouts per breakpoint', () => {
+        const component = shallow(<GridColumn xsPull="one-whole" smPush="one-half" mdPull="one-third" lgPush="one-quarter" xlgPull="one-fifth"><p>Hello</p></GridColumn>);
+        expect(component.hasClass(styles['pull--xs--one-whole'])).to.equal(true);
+        expect(component.hasClass(styles['push--sm--one-half'])).to.equal(true);
+        expect(component.hasClass(styles['pull--md--one-third'])).to.equal(true);
+        expect(component.hasClass(styles['push--lg--one-quarter'])).to.equal(true);
+        expect(component.hasClass(styles['pull--xlg--one-fifth'])).to.equal(true);
+    });
+
+    it('should have custom class when className prop is passed', () => {
+        const component = shallow(<GridColumn className="custom-class"><p>Hello</p></GridColumn>);
         expect(component.hasClass('custom-class')).to.equal(true);
     });
 });

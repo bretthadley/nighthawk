@@ -1,4 +1,4 @@
-@import "../../../assets/styles/base";
+@import "../../../assets/styles/generic/config";
 
 $responsive:            true!default;
 
@@ -8,24 +8,29 @@ $responsive:            true!default;
  */
 $mobile-first:          true!default;
 
-
 /**
  * Set the spacing between your grid items.
  */
-$gutter:                20px!default;
+$gutters: (
+    'xs': 8px,
+    'sm': 12px,
+    'md': 16px,
+    'lg': 24px,
+    'xlg': 32px,
+)!default;
 
+$allowed-gutter-namespaces: ('none', 'xs', 'sm', 'md', 'lg', 'xlg')!default;
 
 /**
  * Would you like Sassâ€™ silent classes, or regular CSS classes?
  */
 $use-silent-classes:    false!default;
 
-
 /**
  * Would you like push and pull classes enabled?
  */
-$push:                  false!default;
-$pull:                  false!default;
+$push:                  true!default;
+$pull:                  true!default;
 
 /**
  * Define your breakpoints. The first value is the prefix that shall be used for
@@ -33,15 +38,14 @@ $pull:                  false!default;
  * that the breakpoint fires at.
  */
 $breakpoints: (
-    'xs' 'screen and (max-width: 640px)',
-    'sm' 'screen and (min-width: 641px)',
-    'sm--only' 'screen and (min-width: 641px) and (max-width: 991px)',
+    'xs' 'screen and (max-width: 768px)',
+    'sm' 'screen and (min-width: 769px)',
+    'sm--only' 'screen and (min-width: 768px) and (max-width: 991px)',
     'md' 'screen and (min-width: 992px)',
     'md--only' 'screen and (min-width: 992px) and (max-width: 1199px)',
     'lg' 'screen and (min-width: 1200px)',
     'xlg' 'screen and (min-width: 1441px)',
 )!default;
-
 
 /**
  * Define which namespaced breakpoints you would like to generate for each of
@@ -51,7 +55,7 @@ $breakpoints: (
  * add and remove breakpoints at will.
  *
  * Push and pull shall only be used if `$push` and/or `$pull` and `$responsive`
- * have been set to â€˜trueâ€™.
+ * have been set to `true`.
  */
 $breakpoint-has-widths: ('xs', 'sm', 'md', 'lg', 'xlg')!default;
 $breakpoint-has-push:   ('xs', 'sm', 'md', 'lg', 'xlg')!default;
@@ -68,6 +72,10 @@ $class-type:            unquote(".");
     $MIXINS
 \*------------------------------------*/
 /**
+ * These mixins are for the library to use only, you should not need to modify
+ * them at all.
+ * Enclose a block of code with a media query as named in `$breakpoints`.
+ *
  * Drop relative positioning into silent classes which canâ€™t take advantage of
  * the `[class*="push--"]` and `[class*="pull--"]` selectors.
  */
@@ -77,9 +85,20 @@ $class-type:            unquote(".");
     }
 }
 
+
 /*------------------------------------*\
     $GRID SETUP
 \*------------------------------------*/
+
+#{$class-type}grid-container {
+    max-width: 1440px;
+    margin: 0 auto 0;
+}
+
+#{$class-type}grid-container--hero {
+    max-width: 2000px;
+}
+
 /**
  * 1. Allow the grid system to be used on lists.
  * 2. Remove any margins and paddings that might affect the grid system.
@@ -89,7 +108,7 @@ $class-type:            unquote(".");
     list-style:none;                /* [1] */
     margin:0;                       /* [2] */
     padding:0;                      /* [2] */
-    margin-left:-$gutter;           /* [3] */
+    margin-left: -(get-gutter());           /* [3] */
 }
 
 /**
@@ -101,7 +120,7 @@ $class-type:            unquote(".");
  */
 #{$class-type}grid__item{
     display:inline-block;           /* [1] */
-    padding-left:$gutter;           /* [2] */
+    padding-left: get-gutter();           /* [2] */
     vertical-align:top;             /* [3] */
     @if $mobile-first == true{
         width:100%;                 /* [4] */
@@ -125,20 +144,6 @@ $class-type:            unquote(".");
         text-align:left;
     }
 }
-
-
-/**
- * Gutterless grids have all the properties of regular grids, minus any spacing.
- * Extends `.grid`.
- */
-#{$class-type}grid--full{
-    margin-left:0;
-
-    > #{$class-type}grid__item{
-        padding-left:0;
-    }
-}
-
 
 /**
  * Align the entire grid to the right. Extends `.grid`.
@@ -183,33 +188,23 @@ $class-type:            unquote(".");
     }
 }
 
+@mixin spacing-type($namespace:"", $gutter-namespace: 'sm') {
+    #{$class-type}#{$namespace}grid--spacing--#{$gutter-namespace} {
+        margin-left: -(get-gutter($gutter-namespace));
 
-/**
- * Create grids with narrower gutters. Extends `.grid`.
- */
-#{$class-type}grid--narrow{
-    margin-left:-($gutter / 2);
+        > #{$class-type}grid__item {
+            padding-left: get-gutter($gutter-namespace);
+        }
 
-    > #{$class-type}grid__item{
-        padding-left:$gutter / 2;
+        > #{$class-type}grid-container {
+            padding: 0 get-gutter($gutter-namespace);
+
+            > #{$class-type}grid__item {
+                padding-left: get-gutter($gutter-namespace);
+            }
+        }
     }
 }
-
-
-/**
- * Create grids with wider gutters. Extends `.grid`.
- */
-#{$class-type}grid--wide{
-    margin-left:-($gutter * 2);
-
-    > #{$class-type}grid__item{
-        padding-left:$gutter * 2;
-    }
-}
-
-
-
-
 
 /*------------------------------------*\
     $WIDTHS
@@ -316,6 +311,11 @@ $class-type:            unquote(".");
  */
 @include device-type();
 
+/**
+* Our regular grid gutter spacing
+*/
+@include spacing-type();
+
 
 /**
  * Our responsive classes, if we have enabled them.
@@ -328,6 +328,17 @@ $class-type:            unquote(".");
         }
     }
 
+    @each $gutter-namespace in $allowed-gutter-namespaces {
+        @include spacing-type('', $gutter-namespace);
+    }
+
+    @each $name in $breakpoint-has-widths {
+        @each $gutter-namespace in $allowed-gutter-namespaces {
+            @include media-query($name) {
+                @include spacing-type('#{$name}--', $gutter-namespace);
+            }
+        }
+    }
 
 }
 
@@ -439,20 +450,14 @@ $class-type:            unquote(".");
     @include push-setup();
 
 
-    @if $responsive == true{
+    @if $responsive == true {
         @each $name in $breakpoint-has-push {
             @include media-query($name) {
-                @include  push-setup('#{$name}--');
+                @include push-setup('#{$name}--');
             }
         }
     }
-
-
 }
-
-
-
-
 
 /*------------------------------------*\
     $PULL
@@ -550,7 +555,7 @@ $class-type:            unquote(".");
     #{$class-type}pull--#{$namespace}eleven-twelfths     { right:91.666%; @include silent-relative(); }
 }
 
-@if $pull == true{
+@if $pull == true {
 
     /**
      * Not a particularly great selector, but the DRYest way to do things.
@@ -561,10 +566,10 @@ $class-type:            unquote(".");
     @include pull-setup();
 
 
-    @if $responsive == true{
+    @if $responsive == true {
         @each $name in $breakpoint-has-pull {
             @include media-query($name) {
-                @include  pull-setup('#{$name}--');
+                @include pull-setup('#{$name}--');
             }
         }
     }
