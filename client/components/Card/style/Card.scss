@@ -1,1 +1,21 @@
+.card {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    background-color: #fff;
+    height: 400px;
+}
 
+%header {
+    display: block;
+}
+
+.body {}
+
+%content-title {
+    margin-top: 0;
+}
+
+%footer {
+    display: block;
+}

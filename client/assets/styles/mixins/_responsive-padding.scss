@@ -1,0 +1,50 @@
+/**
+* TODO pull out the grid variable of gutters / allowed gutter widths to do this in a loop
+*/
+@mixin responsive-padding() {
+    &--xs {  padding: get-gutter('xs');  }
+    &--sm {  padding: get-gutter('sm');  }
+    &--md {  padding: get-gutter('md');  }
+    &--lg {  padding: get-gutter('lg');  }
+    &--xlg {  padding: get-gutter('xlg');  }
+
+    @include media-query(xs) {
+        &--xs {  padding: get-gutter('xs');  }
+        &--sm {  padding: get-gutter('sm');  }
+        &--md {  padding: get-gutter('md');  }
+        &--lg {  padding: get-gutter('lg');  }
+        &--xlg {  padding: get-gutter('xlg');  }
+    }
+
+    @include media-query(sm) {
+        &--xs {  padding: get-gutter('xs');  }
+        &--sm {  padding: get-gutter('sm');  }
+        &--md {  padding: get-gutter('md');  }
+        &--lg {  padding: get-gutter('lg');  }
+        &--xlg {  padding: get-gutter('xlg');  }
+    }
+
+    @include media-query(md) {
+        &--xs {  padding: get-gutter('xs');  }
+        &--sm {  padding: get-gutter('sm');  }
+        &--md {  padding: get-gutter('md');  }
+        &--lg {  padding: get-gutter('lg');  }
+        &--xlg {  padding: get-gutter('xlg');  }
+    }
+
+    @include media-query(lg) {
+        &--xs {  padding: get-gutter('xs');  }
+        &--sm {  padding: get-gutter('sm');  }
+        &--md {  padding: get-gutter('md');  }
+        &--lg {  padding: get-gutter('lg');  }
+        &--xlg {  padding: get-gutter('xlg');  }
+    }
+
+    @include media-query(xlg) {
+        &--xs {  padding: get-gutter('xs');  }
+        &--sm {  padding: get-gutter('sm');  }
+        &--md {  padding: get-gutter('md');  }
+        &--lg {  padding: get-gutter('lg');  }
+        &--xlg {  padding: get-gutter('xlg');  }
+    }
+}

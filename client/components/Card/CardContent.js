@@ -21,7 +21,6 @@ export default class CardContent extends Component {
 
         return (
             <div className={classnames}>
-                <h3>{this.props.title}</h3>
                 {this.props.children}
             </div>
         );

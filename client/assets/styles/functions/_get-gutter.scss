@@ -1,0 +1,3 @@
+@function get-gutter($namespace: 'sm') {
+    @return map-get($gutters, $namespace);
+}

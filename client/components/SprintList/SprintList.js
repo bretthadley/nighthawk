@@ -3,6 +3,7 @@
  */
 import React, { PropTypes } from 'react';
 import cx from 'classnames';
+import { Card, CardTitle, CardContent } from '../Card';
 
 export default class SprintList extends React.Component {
     static propTypes = {
@@ -14,23 +15,28 @@ export default class SprintList extends React.Component {
         componentType: 'div'
     };
 
+    renderSprints(sprint, i) {
+        const { title, description } = sprint;
+        return (
+            <Card key={i}>
+                <CardTitle title={title} />
+                <CardContent>
+                    <p>{description}</p>
+                </CardContent>
+            </Card>
+        );
+    }
+
     render() {
         const Component = this.props.componentType;
         const classnames = cx({
             [this.props.className]: this.props.className
         });
 
-        console.log('===', this.props)
-
         return (
             <Component className={classnames}>
                 {
-                    this.props.sprints.map(sprint => (
-                        <div>
-                            <h2>{sprint.title}</h2>
-                            <h3>{sprint.description}</h3>
-                        </div>
-                    ))
+                    this.props.sprints.map(this.renderSprints)
                 }
             </Component>
         );
