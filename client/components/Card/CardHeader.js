@@ -74,7 +74,7 @@ export default class CardHeader extends Component {
             } = this.props;
         const Element = componentType;
         const classnames = cx({
-            [styles.title]: true,
+            [styles['card-header']]: true,
             [className]: className
         });
 

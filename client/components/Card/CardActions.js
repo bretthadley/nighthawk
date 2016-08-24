@@ -30,7 +30,7 @@ export default class CardActions extends Component {
         } = this.props;
         const Element = componentType;
         const classnames = cx({
-            [styles.actions]: true,
+            [styles['card-actions']]: true,
             [styles[align]]: true,
             [className]: className
         });

@@ -3,8 +3,9 @@
  */
 import React, { PropTypes } from 'react';
 import cx from 'classnames';
-import { Grid, GridColumn } from '../Grid';
+import { Grid, GridColumn, GridContainer } from '../Grid';
 import { Card, CardTitle, CardContent } from '../Card';
+import { Cta } from '../Cta';
 
 export default class SprintList extends React.Component {
     static propTypes = {
@@ -16,15 +17,33 @@ export default class SprintList extends React.Component {
         componentType: 'div'
     };
 
+    addSprint = () => {
+        const title = 'title';
+        const description = 'description';
+
+        this.props.createSprint({
+            title,
+            description
+        });
+    }
+
+    renderAddNewSprint() {
+        return (
+            <Cta ctaType="primary" onClick={this.addSprint}>Add Sprint</Cta>
+        );
+    }
+
     renderSprints(sprint, i) {
         const { title, description } = sprint;
         return (
-            <Card key={i}>
-                <CardTitle title={title} />
-                <CardContent>
-                    <p>{description}</p>
-                </CardContent>
-            </Card>
+            <GridColumn key={i} xs="one-quarter">
+                <Card>
+                    <CardTitle title={title} />
+                    <CardContent>
+                        <p>{description}</p>
+                    </CardContent>
+                </Card>
+            </GridColumn>
         );
     }
 
@@ -36,9 +55,16 @@ export default class SprintList extends React.Component {
 
         return (
             <Component className={classnames}>
-                {
-                    this.props.sprints.map(this.renderSprints)
-                }
+                <Grid smSpacing="8" mdSpacing="16" lgSpacing="24" xlgSpacing="32">
+                    <GridContainer>
+                        <GridColumn>
+                            {this.renderAddNewSprint()}
+                        </GridColumn>
+                        {
+                            this.props.sprints.map(this.renderSprints)
+                        }
+                    </GridContainer>
+                </Grid>
             </Component>
         );
     }

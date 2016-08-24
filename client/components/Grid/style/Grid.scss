@@ -1,3 +1,5 @@
+@import "../../../assets/styles/base";
+
 $responsive:            true!default;
 
 /**
@@ -10,14 +12,15 @@ $mobile-first:          true!default;
  * Set the spacing between your grid items.
  */
 $gutters: (
-    'xs': 8px,
-    'sm': 12px,
-    'md': 16px,
-    'lg': 24px,
-    'xlg': 32px,
+    '0': 0,
+    '8': 8px,
+    '12': 12px,
+    '16': 16px,
+    '24': 24px,
+    '32': 32px,
 )!default;
 
-$allowed-gutter-namespaces: ('none', 'xs', 'sm', 'md', 'lg', 'xlg')!default;
+$allowed-gutter-namespaces: ('0', '8', '12', '16', '24', '32')!default;
 
 /**
  * Would you like Sassâ€™ silent classes, or regular CSS classes?
@@ -36,13 +39,13 @@ $pull:                  true!default;
  * that the breakpoint fires at.
  */
 $breakpoints: (
-    'xs' 'screen and (max-width: 768px)',
-    'sm' 'screen and (min-width: 769px)',
-    'sm--only' 'screen and (min-width: 768px) and (max-width: 991px)',
-    'md' 'screen and (min-width: 992px)',
-    'md--only' 'screen and (min-width: 992px) and (max-width: 1199px)',
-    'lg' 'screen and (min-width: 1200px)',
-    'xlg' 'screen and (min-width: 1441px)',
+    'xxs' 'screen and (max-width: 480px)',
+    'xs' 'screen and (min-width: 600px)',
+    'sm' 'screen and (min-width: 840px)',
+    'md' 'screen and (min-width: 960px)',
+    'lg' 'screen and (min-width: 1280px)',
+    'xlg' 'screen and (min-width: 1440px)',
+    'xxlg' 'screen and (min-width: 1920px)',
 )!default;
 
 /**
@@ -55,9 +58,9 @@ $breakpoints: (
  * Push and pull shall only be used if `$push` and/or `$pull` and `$responsive`
  * have been set to `true`.
  */
-$breakpoint-has-widths: ('xs', 'sm', 'md', 'lg', 'xlg')!default;
-$breakpoint-has-push:   ('xs', 'sm', 'md', 'lg', 'xlg')!default;
-$breakpoint-has-pull:   ('xs', 'sm', 'md', 'lg', 'xlg')!default;
+$breakpoint-has-widths: ('xxs', 'xs', 'sm', 'md', 'lg', 'xlg', 'xxlg')!default;
+$breakpoint-has-push:   ('xxs', 'xs', 'sm', 'md', 'lg', 'xlg', 'xxlg')!default;
+$breakpoint-has-pull:   ('xxs', 'xs', 'sm', 'md', 'lg', 'xlg', 'xxlg')!default;
 
 $class-type:            unquote(".");
 
@@ -81,38 +84,6 @@ $class-type:            unquote(".");
     @if $use-silent-classes == true{
         position:relative;
     }
-}
-
-@mixin media-query($mq) {
-
-    $breakpoint-found: false;
-
-    // Loop through the list of breakpoints weâ€™ve provided in our settings file.
-    @each $breakpoint in $breakpoints {
-
-        $alias:     nth($breakpoint, 1);
-        $condition: nth($breakpoint, 2);
-
-        @if $mq == $alias and $condition {
-            $breakpoint-found: true;
-
-            @media #{$condition} {
-                @content;
-            }
-
-        }
-
-    }
-
-    // If the user specifies a non-exitent alias, send them a warning.
-    @if $breakpoint-found == false {
-        @warn "Oops! Breakpoint #{$mq} does not exist."
-    }
-
-}
-
-@function get-gutter($namespace: 'sm') {
-    @return map-get($gutters, $namespace);
 }
 
 
@@ -218,7 +189,7 @@ $class-type:            unquote(".");
     }
 }
 
-@mixin spacing-type($namespace:"", $gutter-namespace: 'sm') {
+@mixin spacing-type($namespace:"", $gutter-namespace: '16') {
     #{$class-type}#{$namespace}grid--spacing--#{$gutter-namespace} {
         margin-left: -(get-gutter($gutter-namespace));
 
@@ -243,7 +214,6 @@ $class-type:            unquote(".");
  * Create our width classes, prefixed by the specified namespace.
  */
 @mixin device-type($namespace:""){
-
 
     /**
      * Whole

@@ -1,21 +1,33 @@
+@import "../../../assets/styles/base";
+
 .card {
+    @include responsive-spacing(margin-bottom);
+
     display: inline-block;
     position: relative;
     width: 100%;
-    background-color: #fff;
-    height: 400px;
+    background-color: #ccc;
 }
 
-%header {
-    display: block;
+.card-header {
+    @include responsive-spacing(padding);
 }
 
-.body {}
+.card-title {
+    @include responsive-spacing(padding);
 
-%content-title {
-    margin-top: 0;
+    .title,
+    .subtitle {
+        margin: 0;
+    }
 }
 
-%footer {
-    display: block;
+.card-content {
+    @include responsive-spacing(padding);
+}
+
+.media {
+    img {
+        @include responsive-image;
+    }
 }

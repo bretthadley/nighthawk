@@ -2,12 +2,12 @@
  * Created by brett.hadley on 28/06/2016.
  */
 export const SPACING_TYPES = [
-    'none',
-    'xs',
-    'sm',
-    'md',
-    'lg',
-    'xlg'
+    '0',
+    '6',
+    '8',
+    '16',
+    '24',
+    '32'
 ];
 
 export const COLUMN_TYPES = [

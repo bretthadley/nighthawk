@@ -69,7 +69,7 @@ export default class CardTitle extends Component {
         } = this.props;
         const Element = componentType;
         const classnames = cx({
-            [styles.title]: true,
+            [styles['card-title']]: true,
             [className]: className
         });
 

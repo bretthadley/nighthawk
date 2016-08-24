@@ -52,15 +52,15 @@ describe('Grid/Grid.js tests', () => {
     });
 
     it('should have correct spacing class when given property', () => {
-        const component1 = shallow(<Grid spacing="lg"><p>Hello</p></Grid>);
-        const component2 = shallow(<Grid lgSpacing="sm"><p>Hello</p></Grid>);
-        const component3 = shallow(<Grid xlgSpacing="none"><p>Hello</p></Grid>);
+        const component1 = shallow(<Grid spacing="24"><p>Hello</p></Grid>);
+        const component2 = shallow(<Grid lgSpacing="16"><p>Hello</p></Grid>);
+        const component3 = shallow(<Grid xlgSpacing="0"><p>Hello</p></Grid>);
 
-        expect(component1.hasClass(styles['grid--spacing--lg'])).to.equal(true);
+        expect(component1.hasClass(styles['grid--spacing--24'])).to.equal(true);
 
-        expect(component2.hasClass(styles['lg--grid--spacing--sm'])).to.equal(true);
+        expect(component2.hasClass(styles['lg--grid--spacing--16'])).to.equal(true);
 
-        expect(component3.hasClass(styles['xlg--grid--spacing--none'])).to.equal(true);
+        expect(component3.hasClass(styles['xlg--grid--spacing--0'])).to.equal(true);
     });
 
     it('should have custom class when className prop is passed', () => {
