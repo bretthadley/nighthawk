@@ -37,12 +37,13 @@ export function createSprint({ title, description }) {
         service.create({
             title,
             description
-        }, (error, sprint) => {
+        }, (error, sprint) => { // eslint-disable-line
             if (error) {
                 dispatch(createSprintError(error));
-            } else {
-                dispatch(createdSprint(sprint));
             }
+            // } else {
+            //     dispatch(createdSprint(sprint));
+            // }
         });
     };
 }
