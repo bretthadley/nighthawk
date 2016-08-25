@@ -15,4 +15,8 @@
     @include media-query(xlg) {
         #{$prop}: get-gutter('24');
     }
+
+    @include media-query(xxlg) {
+        #{$prop}: get-gutter('32');
+    }
 }

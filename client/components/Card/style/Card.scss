@@ -7,15 +7,33 @@
     position: relative;
     width: 100%;
     background-color: #ccc;
+
+    & > *:last-child {
+        @include responsive-spacing(padding-bottom);
+    }
+}
+
+.card-header,
+.card-media,
+.card-title,
+.card-content,
+.card-actions {
+    @include responsive-spacing(padding-top);
+    @include responsive-spacing(padding-left);
+    @include responsive-spacing(padding-right);
 }
 
 .card-header {
-    @include responsive-spacing(padding);
+
+}
+
+.card-media {
+    img {
+        @include responsive-image;
+    }
 }
 
 .card-title {
-    @include responsive-spacing(padding);
-
     .title,
     .subtitle {
         margin: 0;
@@ -23,11 +41,16 @@
 }
 
 .card-content {
-    @include responsive-spacing(padding);
-}
 
-.media {
-    img {
-        @include responsive-image;
+    & > * {
+        margin-top: 0;
+        padding-top: 0;
+
+        &:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
     }
 }
+
+.card-actions {}

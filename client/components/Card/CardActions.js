@@ -24,6 +24,7 @@ export default class CardActions extends Component {
             componentType,
             className,
             align,
+            layout,
             includeInExpanding, // eslint-disable-line
             children,
             ...others
@@ -32,6 +33,7 @@ export default class CardActions extends Component {
         const classnames = cx({
             [styles['card-actions']]: true,
             [styles[align]]: true,
+            [styles[layout]]: true,
             [className]: className
         });
 
