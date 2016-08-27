@@ -2,14 +2,19 @@
 
 @import "assets/styles/base";
 
+$body-background: color($grey, 50);
+
 html {
     box-sizing: border-box;
     font-size: 62.5%;
+    background-color: $body-background;
+    color: $text-primary;
 }
 
 body {
     font-family: 'Roboto', sans-serif;
     font-size: 1.4rem;
+    line-height: 1.15;
 }
 
 img {

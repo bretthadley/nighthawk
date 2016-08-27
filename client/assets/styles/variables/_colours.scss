@@ -8,12 +8,6 @@ $text-hint: rgba(0,0,0,.38);
 $text-disabled: rgba(0,0,0,.38);
 $divider: rgba(0,0,0,.12);
 
-$text-primary: rgba(0,0,0,.87);
-$text-secondary: rgba(0,0,0,.54);
-$text-hint: rgba(0,0,0,.38);
-$text-disabled: rgba(0,0,0,.38);
-$divider: rgba(0,0,0,.12);
-
 $white: (
     500: #ffffff,
     100: #ffffff,
@@ -341,35 +335,3 @@ $blue-grey: (
     800:  #37474f,
     900:  #263238
 );
-
-
-// base/base
-$body-background: color($grey, 50);
-
-//components/app-bar
-$app-bar-background: color($white);
-$app-bar-icon-colour: $text-hint;
-$app-bar-search-input-background: transparent;
-$app-bar-search-input-placeholder: $text-hint;
-$app-bar-search-input-background-active: color($white);
-
-//components/lists
-$list-background: color($grey, 100);
-$list-heading-background: color($grey, 100);
-$list-footer-background: color($grey, 100);
-
-//components/navigation
-$navigation-background: color($red);
-$navigation-menu-icon-colour: color($white);
-$navigation-link: color($white, 70);
-$navigation-link-active: color($white);
-$navigation-link-border-active: color($white);
-$navigation-link-state-active: color($red);
-
-//components/deck
-
-
-//componetns/card
-$card-background: color($white);
-$card-border: $divider;
-$card-footer-divider: $divider;

@@ -8,12 +8,13 @@ import styles from './style/TextInput.scss';
 export default
 class TextInput extends React.Component {
     static propTypes = {
+        componentType: PropTypes.string,
         className: PropTypes.string
     };
 
-    isValid(value) {
-        return value !== '' && value !== undefined && value !== null;
-    }
+    static defaultProps = {
+        componentType: 'input'
+    };
 
     state = {
         isValid: true,
@@ -21,9 +22,11 @@ class TextInput extends React.Component {
         inputFocused: false
     };
 
-    handleFocus = (e) => {
-        console.log('FOCUS');
+    isValid(value) {
+        return value !== '' && value !== undefined && value !== null;
+    }
 
+    handleFocus = (e) => {
         this.setState({
             inputFocused: true
         });
@@ -32,17 +35,15 @@ class TextInput extends React.Component {
     };
 
     handleBlur = (e) => {
-        console.log('BLUR');
-
         this.setState({
             inputFocused: false
         });
 
-        if (this.props.onBlur) this.props.onBlur(e);
+        if (this.props.onBlur) this.props.onBlur(e, e.target.value);
     };
 
     handleInputChange = (e) => {
-        const valid = this.isValid(e.target.value)
+        const valid = this.isValid(e.target.value);
 
         this.setState({
             isValid: valid,
@@ -53,12 +54,16 @@ class TextInput extends React.Component {
 
     render() {
         const {
+            componentType,
             className,
             id,
             name,
-            labelText
+            labelText,
+            required,
+            ...others
         } = this.props;
 
+        const Element = componentType;
         const classnames = cx({
             [styles['text-input']]: true,
             [styles['text-input']]: true,
@@ -68,24 +73,25 @@ class TextInput extends React.Component {
         const inputClassnames = cx({
             [styles.input]: true,
             [styles.active]: this.state.inputFocused || this.state.hasValue,
-            [styles.error]: !this.state.isValid
+            [styles.error]: required && !this.state.isValid
         });
 
         const labelClassnames = cx({
             [styles.label]: true,
             [styles.active]: this.state.inputFocused || this.state.hasValue,
-            [styles.error]: !this.state.isValid
+            [styles.error]: required && !this.state.isValid
         });
 
         return (
             <div className={classnames}>
-                <input
+                <Element
                     name={name}
                     id={id}
                     className={inputClassnames}
                     onChange={this.handleInputChange}
                     onFocus={this.handleFocus}
                     onBlur={this.handleBlur}
+                    {...others}
                 />
                 <label className={labelClassnames} htmlFor={id} >{labelText}</label>
             </div>
