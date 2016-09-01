@@ -17,10 +17,7 @@ export default class SprintList extends React.Component {
         componentType: 'div'
     };
 
-    addSprint = () => {
-        const title = 'title';
-        const description = 'description';
-
+    addSprint = (title, description) => {
         this.props.createSprint({
             title,
             description

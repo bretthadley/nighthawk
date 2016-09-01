@@ -8,17 +8,29 @@ import { TextInput } from '../TextInput';
 import { Cta } from '../Cta';
 
 export default
-class SprintList extends React.Component {
+class SprintListAddItem extends React.Component {
     static propTypes = {
         className: PropTypes.string
     };
+
+    state = {
+        title: undefined,
+        desc: undefined
+    }
 
     isValid(value) {
         return value !== '' && value !== undefined && value !== null;
     }
 
     handleAddSprint = () => {
-        this.props.addSprint();
+        const { title, desc } = this.state;
+        if (this.isValid(title)) {
+            this.props.addSprint(title, desc);
+        }
+    };
+
+    onFieldChange = (type) => (e, value) => {
+        this.setState({ [type]: value });
     };
 
     render() {
@@ -36,6 +48,7 @@ class SprintList extends React.Component {
                         name="title"
                         id="title"
                         labelText="Sprint Title"
+                        handleOnBlur={this.onFieldChange('title')}
                     />
                     <TextInput
                         componentType="textarea"
@@ -43,6 +56,7 @@ class SprintList extends React.Component {
                         id="description"
                         labelText="Sprint Description"
                         rows="2"
+                        handleOnBlur={this.onFieldChange('desc')}
                     />
                 </CardContent>
                 <CardActions>
