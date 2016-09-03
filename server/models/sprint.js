@@ -52,10 +52,10 @@ const hooks = {
     before: {
         all(hook) {},
         find(hook) {
-            return populateStories(hook);
+            populateStories(hook);
         },
         get(hook) {
-            return populateStories(hook);
+            populateStories(hook);
         },
         create(hook) {
             populateDefaultValuesWhenNotSpecified(hook);

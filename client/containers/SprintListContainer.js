@@ -6,7 +6,13 @@ import * as actions from '../reducers/sprint';
 import { SprintList } from '../components/SprintList';
 
 const mapStateToProps = state => {
-    const sprints = (state.sprint.sprints.length === 0) ? [] : state.sprint.sprints.map(sprintId => state.sprint[sprintId]);
+    const sprints = state.sprint.sprints.map(sprintId => {
+        return {
+            ...state.sprint[sprintId],
+            stories: state.story[sprintId]
+        };
+    });
+
     return { sprints };
 };
 

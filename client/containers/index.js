@@ -8,3 +8,4 @@ export HomeContainer from './HomeContainer';
 export TeamDashboardContainer from './TeamDashboardContainer';
 export SprintContainer from './SprintContainer';
 export SprintListContainer from './SprintListContainer';
+export StoryListContainer from './StoryListContainer';
