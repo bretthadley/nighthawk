@@ -9,7 +9,7 @@ const mapStateToProps = state => {
     const sprints = state.sprint.sprints.map(sprintId => {
         return {
             ...state.sprint[sprintId],
-            stories: state.story[sprintId]
+            stories: state.story[sprintId] || []
         };
     });
 
