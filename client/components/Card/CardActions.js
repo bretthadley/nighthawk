@@ -9,7 +9,7 @@ export default class CardActions extends Component {
     static propTypes = {
         componentType: PropTypes.string,
         className: PropTypes.string,
-        align: PropTypes.oneOf('vertical', 'horizontal'),
+        align: PropTypes.oneOf(['vertical', 'horizontal']),
         includeInExpanding: PropTypes.bool
     };
 
