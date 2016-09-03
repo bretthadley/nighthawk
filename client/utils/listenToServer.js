@@ -24,7 +24,6 @@ export default function listenToServer(app, store) {
 
         events.forEach((event) => {
             service.on(event, (payload) => {
-                console.log('===========', payload);
                 store.dispatch(resourceActions[event](serviceName, payload));
             });
         });

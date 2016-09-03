@@ -14,7 +14,7 @@ const routes = (
     <Route path="/" component={AppContainer}>
         <IndexRoute component={HomeContainer} />
         <Route path="team" component={TeamDashboardContainer} />
-        <Route path="team/s/:id" component={SprintContainer} />
+        <Route path="team/s/:sprintId" component={SprintContainer} />
     </Route>
 );
 

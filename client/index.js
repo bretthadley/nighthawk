@@ -24,22 +24,22 @@ listenToServer(feathersApp, store);
 const sprintService = feathersApp.service('sprint');
 const storyService = feathersApp.service('story');
 
-sprintService.create({
-    title: 'hellllooo',
-    description: 'qwdqawdqwadwqad'
-}, (err, sprint) => {
-    console.log('===', err, sprint);
-    // TODO throw this to an action to broadcast
-
-    storyService.create({
-        title: 'hellllooo',
-        description: 'qwdqawdqwadwqad',
-        sprintId: sprint.id,
-        brett: 12345
-    }, (err, story) => {
-        console.log('===', err, story);
-    });
-});
+// sprintService.create({
+//     title: 'hellllooo',
+//     description: 'qwdqawdqwadwqad'
+// }, (err, sprint) => {
+//     console.log('===', err, sprint);
+//     // TODO throw this to an action to broadcast
+//
+//     storyService.create({
+//         title: 'hellllooo',
+//         description: 'qwdqawdqwadwqad',
+//         sprintId: sprint.id,
+//         brett: 12345
+//     }, (err, story) => {
+//         console.log('===', err, story);
+//     });
+// });
 
 render(
     <AppContainer>

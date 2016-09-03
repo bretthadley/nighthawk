@@ -5,7 +5,10 @@ import { connect } from 'react-redux';
 // import * as actions from '../../reducers/something';
 import { SprintPage } from '../pages';
 
-const mapStateToProps = state => state;
+const mapStateToProps = (state, props) => {
+    console.log(state);
+    return state;
+}
 
 const mapDispatchToActions = {
     // ...actions
