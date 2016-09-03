@@ -15,7 +15,6 @@ export default class StoryList extends React.Component {
     };
 
     addStory = (title, description) => {
-        console.log(this.props);
         this.props.createStory(
             this.props.sprintId,
             { title, description }

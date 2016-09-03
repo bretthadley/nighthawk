@@ -12,9 +12,10 @@ export const defaultState = {};
 export default function reducer(state = defaultState, action) {
     switch (action.type) {
         case STORY_CREATED:
+            const oldStories = state[action.payload.sprintId] || [];
             return {
                 ...state,
-                [action.payload.sprintId]: [...state[action.payload.sprintId], action.payload]
+                [action.payload.sprintId]: [...oldStories, action.payload]
             };
         case SPRINTS_FETCHED:
             return action.payload.data.reduce((state, sprint) => {

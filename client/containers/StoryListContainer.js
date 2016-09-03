@@ -4,7 +4,7 @@ import * as actions from '../reducers/story';
 
 const mapStateToProps = (state, props) => {
     return {
-        stories: state.story[props.sprintId]
+        stories: state.story[props.sprintId] || []
     };
 };
 
