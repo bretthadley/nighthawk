@@ -19,7 +19,7 @@ class SprintListItem extends React.Component {
 
         return (
             <Card className={classnames}>
-                <CardTitle title={`${id} - ${title}`} />
+                <CardTitle title={`${id} - ${title}`} linkTo={`/team/s/${id}`} />
                 <CardContent>
                     <p>{description}</p>
                 </CardContent>

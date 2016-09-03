@@ -4,6 +4,7 @@
 import React, { Component, PropTypes } from 'react';
 import cx from 'classnames';
 import styles from './style/Card.scss';
+import { Link } from 'react-router';
 
 export default class CardTitle extends Component {
     static propTypes = {
@@ -32,9 +33,11 @@ export default class CardTitle extends Component {
         });
 
         if (typeof title === 'string') {
-            return (
-                <h3 className={classnames}>{title}</h3>
-            );
+            if(this.props.linkTo) {
+                return <Link className={classnames} to={this.props.linkTo}>{title}</Link>;
+            } else {
+                return <h3 className={classnames}>{title}</h3>;
+            }
         }
 
         return title;
