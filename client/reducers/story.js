@@ -1,6 +1,18 @@
 import server from '../feathers/configureFeathers';
 import { SPRINTS_FETCHED } from './sprint';
 
+/**
+    Example structure:
+    {
+        [sprintId]: {
+            stories: [storyId1, storyId2, storyId3],
+            [storyId1]: {},
+            [storyId2]: {},
+            [storyId3]: {},
+        }
+    }
+*/
+
 const service = server.service('story');
 
 // Actions

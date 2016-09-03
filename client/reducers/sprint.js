@@ -1,4 +1,15 @@
 import server from '../feathers/configureFeathers';
+
+/**
+    Example structure:
+    {
+        sprints: [sprintId1, sprintId2, sprintId3],
+        [sprintId1]: {},
+        [sprintId2]: {},
+        [sprintId3]: {},
+    }
+*/
+
 const service = server.service('sprint');
 
 // Actions
