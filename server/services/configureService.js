@@ -4,8 +4,8 @@ export default ({ serviceName, model, hooks }, app) => {
     const options = {
         Model: model(app.get('sequelize')),
         paginate: {
-            default: 5,
-            max: 25
+            default: 50,
+            max: 50
         }
     };
     const name = `/${serviceName}`;

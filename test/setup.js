@@ -9,6 +9,8 @@ var chaiEnzyme = require('chai-enzyme');
 
 chai.use(chaiEnzyme());
 
+global.window = {};
+
 hook({
     extensions: ['.scss'],
     generateScopedName: '[local]___[hash:base64:5]',

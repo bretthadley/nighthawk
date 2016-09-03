@@ -4,10 +4,10 @@
 import React from 'react';
 
 export default function SprintPage(props) {
+    const id = (props.sprint === undefined) ? '' : props.sprint.id;
     return (
         <div>
-            <h1>Sprint Page</h1>
-            {props.children}
+            <h1>Sprint {id}</h1>
         </div>
     );
 }

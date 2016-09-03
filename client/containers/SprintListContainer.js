@@ -5,7 +5,10 @@ import { connect } from 'react-redux';
 import * as actions from '../reducers/sprint';
 import { SprintList } from '../components/SprintList';
 
-const mapStateToProps = state => ({ sprints: state.sprint });
+const mapStateToProps = state => {
+    const sprints = (state.sprint.sprints.length === 0) ? [] : state.sprint.sprints.map(sprintId => state.sprint[sprintId]);
+    return { sprints };
+};
 
 const mapDispatchToActions = {
     ...actions

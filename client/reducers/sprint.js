@@ -1,17 +1,35 @@
 import server from '../feathers/configureFeathers';
 const service = server.service('sprint');
+
 // Actions
-const SPRINT_CREATED = 'nighthawk/sprint/SPRINT_CREATED';
-const SPRINT_CREATE_ERROR = 'nighthawk/sprint/SPRINT_CREATE_ERROR';
+export const SPRINT_CREATED = 'nighthawk/sprint/CREATED';
+export const SPRINT_CREATE_ERROR = 'nighthawk/sprint/CREATE_ERROR';
+export const SPRINT_FETCHED = 'nighthawk/sprint/FETCHED';
+export const SPRINT_FETCH_ERROR = 'nighthawk/sprint/FETCH_ERROR';
+export const SPRINTS_FETCHED = 'nighthawk/sprints/FETCHED';
+export const SPRINTS_FETCH_ERROR = 'nighthawk/sprints/FETCH_ERROR';
 
 // Reducer
-export const defaultState = [];
+export const defaultState = {
+    sprints: []
+};
 
 export default function reducer(state = defaultState, action) {
     switch (action.type) {
-        case 'SPRINT_CREATED': // websocket
-        case SPRINT_CREATED: // from action in this reducer
-            return [...state, action.payload];
+        case SPRINT_CREATED:
+            return {
+                ...state,
+                sprints: [...state.sprints, action.payload.id],
+                [action.payload.id]: action.payload
+            };
+        case SPRINTS_FETCHED:
+            return action.payload.data.reduce((state, sprint) => {
+                return {
+                    ...state,
+                    sprints: [...state.sprints, sprint.id],
+                    [sprint.id]: sprint
+                }
+            }, state);
         default:
             return state;
     }
@@ -24,14 +42,18 @@ export function createdSprint(payload) {
         payload
     };
 }
-
 export function createSprintError(payload) {
     return {
         type: SPRINT_CREATE_ERROR,
         payload
     };
 }
+const fetchedSprint = payload => ({ type: SPRINT_FETCHED, payload });
+const fetchSprintError = payload => ({ type: SPRINT_FETCH_ERROR, payload });
+const fetchedSprints = payload => ({ type: SPRINTS_FETCHED, payload });
+const fetchedSprintsError = payload => ({ type: SPRINTS_FETCH_ERROR, payload });
 
+// Async Actions
 export function createSprint({ title, description }) {
     return dispatch => {
         service.create({
@@ -44,6 +66,26 @@ export function createSprint({ title, description }) {
             // } else {
             //     dispatch(createdSprint(sprint));
             // }
+        });
+    };
+}
+
+export function fetchSprints() {
+    return dispatch => {
+        service.find().then(sprints => {
+            dispatch(fetchedSprints(sprints));
+        }).catch(err => {
+            dispatch(fetchedSprintsError(err));
+        });
+    };
+}
+
+export function fetchSprint(sprintId) {
+    return dispatch => {
+        service.get(sprintId).then(sprint => {
+            dispatch(fetchedSprint(sprint));
+        }).catch(err => {
+            dispatch(fetchedSprintError(err));
         });
     };
 }

@@ -6,8 +6,7 @@ import { connect } from 'react-redux';
 import { SprintPage } from '../pages';
 
 const mapStateToProps = (state, props) => {
-    console.log(state);
-    return state;
+    return { sprint : state.sprint[props.routeParams.sprintId] };
 }
 
 const mapDispatchToActions = {

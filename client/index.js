@@ -14,6 +14,7 @@ import { RootContainer } from './containers';
 import routes from './routes';
 import listenToServer from './utils/listenToServer';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import { fetchSprints } from './reducers/sprint';
 
 injectTapEventPlugin();
 const store = configureStore(browserHistory, window.__INITIAL_STATE__); // eslint-disable-line
@@ -24,22 +25,8 @@ listenToServer(feathersApp, store);
 const sprintService = feathersApp.service('sprint');
 const storyService = feathersApp.service('story');
 
-// sprintService.create({
-//     title: 'hellllooo',
-//     description: 'qwdqawdqwadwqad'
-// }, (err, sprint) => {
-//     console.log('===', err, sprint);
-//     // TODO throw this to an action to broadcast
-//
-//     storyService.create({
-//         title: 'hellllooo',
-//         description: 'qwdqawdqwadwqad',
-//         sprintId: sprint.id,
-//         brett: 12345
-//     }, (err, story) => {
-//         console.log('===', err, story);
-//     });
-// });
+// Get all sprints up front.
+store.dispatch(fetchSprints());
 
 render(
     <AppContainer>

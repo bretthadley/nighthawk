@@ -6,15 +6,15 @@ const events = ['created', 'updated', 'removed', 'serviceError'];
 
 const resourceActions = {
     created: (type, payload) => ({
-        type: `${type.toUpperCase()}_CREATED`,
+        type: require(`../reducers/${type}`)[`${type.toUpperCase()}_CREATED`],
         payload
     }),
     updated: (type, payload) => ({
-        type: `${type.toUpperCase()}_UPDATED`,
+        type: require(`../reducers/${type}`)[`${type.toUpperCase()}_UPDATED`],
         payload
     }),
     removed: (type) => ({
-        type: `${type.toUpperCase()}_REMOVED`
+        type: require(`../reducers/${type}`)[`${type.toUpperCase()}_REMOVED`],
     })
 };
 
