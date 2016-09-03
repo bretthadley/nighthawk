@@ -12,6 +12,10 @@ const model = (sequelize) => {
        description: {
            type: Sequelize.STRING,
            allowNull: false
+       },
+       state: {
+           type: Sequelize.STRING,
+           allowNull: false
        }
    }, {
        freezeTableName: true,
@@ -38,6 +42,12 @@ const populateStories = (hook) => {
     return hook;
 };
 
+const populateDefaultValuesWhenNotSpecified = hook => {
+    if(hook.data.state === undefined) {
+        hook.data.state = 'planning';
+    }
+}
+
 const hooks = {
     before: {
         all(hook) {},
@@ -47,7 +57,9 @@ const hooks = {
         get(hook) {
             return populateStories(hook);
         },
-        create(hook) {},
+        create(hook) {
+            populateDefaultValuesWhenNotSpecified(hook);
+        },
         update(hook) {},
         patch(hook) {},
         remove(hook) {}
