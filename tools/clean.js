@@ -9,6 +9,7 @@ import del from 'del';
 async function clean() {
     try {
         await del(['dist/*']);
+        await del(['server/data/*']);
     } catch (e) {
         console.error(e); // eslint-disable-line no-console
     }

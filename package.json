@@ -9,9 +9,8 @@
     "test:tdd": "mocha --compilers js:babel-register,js:./test/setup.js 'test/**/*.spec.js' --watch",
     "coverage": "istanbul cover node_modules/mocha/bin/_mocha -- --compilers js:babel-core/register,js:./test/setup.js 'test/**/*.spec.js' 'client/components/**/*.spec.js'",
     "build": "babel-node tools/run build --env=production",
-    "dev": "npm run cleandb && npm run start",
+    "dev": "npm run start",
     "start": "babel-node tools/run start --env=development --watch",
-    "cleandb": "rm -rf server/data",
     "check": "npm run lint && npm run test",
     "validate": "npm ls"
   },
