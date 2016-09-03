@@ -36,12 +36,23 @@ const model = (sequelize) => {
     });
 }
 
+const populateDefaultValuesWhenNotSpecified = hook => {
+    // if(hook.data.estimatedTime === undefined) {
+    //     hook.data.estimatedTime = 0;
+    // }
+    // if(hook.data.loggedTime === undefined) {
+    //     hook.data.loggedTime = 0;
+    // }
+}
+
 const hooks = {
     before: {
         all: [],
         find: [],
         get: [],
-        create: [],
+        create(hook) {
+            populateDefaultValuesWhenNotSpecified(hook);
+        },
         update: [],
         patch: [],
         remove: []
