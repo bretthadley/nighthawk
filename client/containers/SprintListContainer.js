@@ -4,15 +4,15 @@
 import { connect } from 'react-redux';
 import * as actions from '../reducers/sprint';
 import { SprintList } from '../components/SprintList';
+import _ from 'lodash';
 
 const mapStateToProps = state => {
     const sprints = state.sprint.sprints.map(sprintId => {
         return {
             ...state.sprint[sprintId],
-            stories: state.story[sprintId] || []
+            stories:  _.get(state,`story.${sprintId}.stories`) || []
         };
     });
-
     return { sprints };
 };
 

@@ -3,8 +3,9 @@ const globalHooks = require('../hooks/index');
 const feathersHooks = require('feathers-hooks');
 const auth = require('feathers-authentication').hooks;
 
+const NAME = 'sprint';
 const model = (sequelize) => {
-   const sprint = sequelize.define('sprint', {
+   return sequelize.define(NAME, {
        title: {
            type: Sequelize.STRING,
            allowNull: false
@@ -27,8 +28,6 @@ const model = (sequelize) => {
            }
        }
    });
-
-   return sprint;
 }
 
 const populateStories = (hook) => {
@@ -76,7 +75,7 @@ const hooks = {
 }
 
 export default {
-    serviceName: 'sprint',
+    serviceName: NAME,
     model,
     hooks
 }

@@ -9,14 +9,14 @@ class StoryListItem extends React.Component {
     };
 
     render() {
-        const { id, title, description, className } = this.props;
+        const { id, title, description, className, sprintId } = this.props;
         const classnames = cx({
             [className]: className
         });
 
         return (
             <Card className={classnames}>
-                <CardTitle title={`${id} - ${title}`} />
+                <CardTitle title={`${id} - ${title}`} linkTo={`/team/s/${sprintId}/S-${id}`} />
                 <CardContent>
                     <p>{description}</p>
                 </CardContent>

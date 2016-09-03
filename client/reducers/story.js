@@ -12,16 +12,28 @@ export const defaultState = {};
 export default function reducer(state = defaultState, action) {
     switch (action.type) {
         case STORY_CREATED:
-            const oldStories = state[action.payload.sprintId] || [];
+            const storiesForSprint = state[action.payload.sprintId] || { stories: [] };
             return {
                 ...state,
-                [action.payload.sprintId]: [...oldStories, action.payload]
+                [action.payload.sprintId]: {
+                    ...storiesForSprint,
+                    stories: [...storiesForSprint.stories, action.payload.id],
+                    [action.payload.id]: action.payload
+                }
             };
         case SPRINTS_FETCHED:
             return action.payload.data.reduce((state, sprint) => {
+                const stories = sprint.stories || [];
+                const obj = stories.reduce((acc, story) => {
+                    return {
+                        ...acc,
+                        stories: [...acc.stories, story.id],
+                        [story.id]: story
+                    }
+                }, { stories: [] });
                 return {
                     ...state,
-                    [sprint.id]: sprint.stories || []
+                    [sprint.id]: obj
                 }
             }, state);
         default:

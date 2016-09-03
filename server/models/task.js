@@ -3,7 +3,7 @@ const globalHooks = require('../hooks/index');
 const feathersHooks = require('feathers-hooks');
 const auth = require('feathers-authentication').hooks;
 
-const NAME = 'story';
+const NAME = 'task';
 const model = (sequelize) => {
     return sequelize.define(NAME, {
         title: {
@@ -13,12 +13,20 @@ const model = (sequelize) => {
         description: {
             type: Sequelize.STRING,
             allowNull: false
+        },
+        estimatedTime: {
+            type: Sequelize.TIME,
+            allowNull: false
+        },
+        loggedTime: {
+            type: Sequelize.TIME,
+            allowNull: false
         }
     }, {
         freezeTableName: true,
         classMethods: {
             associate(models) {
-                models.story.belongsTo(models.sprint,
+                models.task.belongsTo(models.story,
                     {
                         allowNull: false
                     }
@@ -30,9 +38,7 @@ const model = (sequelize) => {
 
 const hooks = {
     before: {
-        all: [
-            // ...globalHooks.authHooks
-        ],
+        all: [],
         find: [],
         get: [],
         create: [],
@@ -44,9 +50,7 @@ const hooks = {
         all: [],
         find: [],
         get: [],
-        create: [
-            // hooks.populate('sprintId', { service: 'sprint', field: 'id' })
-        ],
+        create: [],
         update: [],
         patch: [],
         remove: []

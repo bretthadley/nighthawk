@@ -10,8 +10,9 @@ const globalHooks = require('../hooks/index');
 const feathersHooks = require('feathers-hooks');
 const auth = require('feathers-authentication').hooks;
 
+const NAME = 'user';
 const model = (sequelize) => {
-    const user = sequelize.define('user', {
+    const user = sequelize.define(NAME, {
         facebookId: {
             type: Sequelize.STRING,
             allowNull: true
@@ -76,7 +77,7 @@ const hooks = {
 }
 
 export default {
-    serviceName: 'user',
+    serviceName: NAME,
     model,
     hooks
 }

@@ -7,7 +7,8 @@ import {
     AppContainer,
     HomeContainer,
     TeamDashboardContainer,
-    SprintContainer
+    SprintContainer,
+    StoryContainer,
 } from '../containers';
 
 const routes = (
@@ -15,7 +16,7 @@ const routes = (
         <IndexRoute component={HomeContainer} />
         <Route path="team" component={TeamDashboardContainer} />
         <Route path="team/s/:sprintId" component={SprintContainer} />
+        <Route path="team/s/:sprintId/S-:storyId" component={StoryContainer} />
     </Route>
 );
-
 export default routes;
