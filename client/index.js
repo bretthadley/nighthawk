@@ -22,25 +22,9 @@ const history = syncHistoryWithStore(browserHistory, store);
 
 listenToServer(feathersApp, store);
 
-const sprintService = feathersApp.service('sprint');
-const storyService = feathersApp.service('story');
-const taskService = feathersApp.service('task');
-
-
-// testing, not sure what the sequelize.TIME format is, accepts numbers & strings.
-taskService.create({
-    title: 'test task',
-    description: 'dfasdfasdf',
-    estimatedTime: '3h',
-    loggedTime: 0
-}).then(task => {
-    console.log('CREATED TASK', task);
-}).catch(err => {
-    console.log('ERROR', err);
-});
-
-
-
+// const sprintService = feathersApp.service('sprint');
+// const storyService = feathersApp.service('story');
+// const taskService = feathersApp.service('task');
 
 // Get all sprints up front.
 store.dispatch(fetchSprints());

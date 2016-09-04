@@ -15,11 +15,11 @@ const model = (sequelize) => {
             allowNull: false
         },
         estimatedTime: {
-            type: Sequelize.TIME,
+            type: Sequelize.INTEGER,
             allowNull: false
         },
         loggedTime: {
-            type: Sequelize.TIME,
+            type: Sequelize.INTEGER,
             allowNull: false
         }
     }, {
@@ -37,12 +37,12 @@ const model = (sequelize) => {
 }
 
 const populateDefaultValuesWhenNotSpecified = hook => {
-    // if(hook.data.estimatedTime === undefined) {
-    //     hook.data.estimatedTime = 0;
-    // }
-    // if(hook.data.loggedTime === undefined) {
-    //     hook.data.loggedTime = 0;
-    // }
+    if(hook.data.estimatedTime === undefined) {
+        hook.data.estimatedTime = 0;
+    }
+    if(hook.data.loggedTime === undefined) {
+        hook.data.loggedTime = 0;
+    }
 }
 
 const hooks = {

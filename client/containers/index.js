@@ -9,4 +9,5 @@ export TeamDashboardContainer from './TeamDashboardContainer';
 export SprintContainer from './SprintContainer';
 export SprintListContainer from './SprintListContainer';
 export StoryListContainer from './StoryListContainer';
+export TaskListContainer from './TaskListContainer';
 export StoryContainer from './StoryContainer';

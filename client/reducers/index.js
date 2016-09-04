@@ -6,12 +6,14 @@ import { routerReducer as routing } from 'react-router-redux';
 import example from './example';
 import sprint from './sprint';
 import story from './story';
+import task from './task';
 
 const root = combineReducers({
     routing,
     example,
     sprint,
-    story
+    story,
+    task
 });
 
 export default root;

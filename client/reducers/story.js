@@ -63,7 +63,7 @@ export const createStory = (sprintId, { title, description }) => {
             title,
             description,
             sprintId
-        }, (error, sprint) => {
+        }, (error, story) => {
             if (error) {
                 dispatch(createStoryError(error));
             }
