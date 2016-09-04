@@ -1,6 +1,5 @@
 import server from '../feathers/configureFeathers';
-import { SPRINTS_FETCHED } from './sprint';
-import { STORY_CREATED } from './story';
+import { STORY_CREATED, STORY_FETCHED } from './story';
 import _ from 'lodash';
 
 /**
@@ -35,14 +34,14 @@ export default function reducer(state = defaultState, action) {
                     [action.payload.id]: action.payload
                 }
             };
+        case STORY_FETCHED:
         case STORY_CREATED:
             const storyId = action.payload.id;
-            return { ...state, [storyId]: { tasks: [] } };
-        case SPRINTS_FETCHED:
-            const allStories = _.flatMap(action.payload.data, 'stories');
-            return allStories.reduce((acc, story) => {
-                return { ...acc, [story.id]: { tasks: [] } };
-            }, state);
+            const tasksFromApi = action.payload.tasks || [];
+            const tasksForStory = tasksFromApi.reduce((acc, task) => {
+                return { ...acc, tasks: [...acc.tasks, task.id], [task.id]: task };
+            }, { tasks: [] });
+            return { ...state, [storyId]: tasksForStory };
         default:
             return state;
     }

@@ -23,18 +23,36 @@ const model = (sequelize) => {
                         allowNull: false
                     }
                 );
+                models.story.hasMany(models.task, {
+                    as: 'tasks'
+                });
             }
         }
     });
 }
+
+const populateTasks = (hook) => {
+    hook.params.sequelize = {
+        include: [{
+            model: hook.app.get('models').task,
+            as: 'tasks'
+        }]
+    };
+
+    return hook;
+};
 
 const hooks = {
     before: {
         all: [
             // ...globalHooks.authHooks
         ],
-        find: [],
-        get: [],
+        find(hook) {
+            populateTasks(hook);
+        },
+        get(hook) {
+            populateTasks(hook);
+        },
         create: [],
         update: [],
         patch: [],

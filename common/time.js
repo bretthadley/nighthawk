@@ -4,7 +4,7 @@ const SUFFIXES = ['m', 'h', 'd', 'w'];
 
 export const split = val => {
     const value = parseFloat(val.match(/[0-9]\D?[0-9]?/g)[0]);
-    const suffix = val.match(/[a-zA-Z]/g, '')[0];
+    const suffix = val.match(/[a-zA-Z]/g)[0];
     return { value, suffix };
 }
 
