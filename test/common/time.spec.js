@@ -14,9 +14,11 @@ describe('time', () => {
         expect(split('24m')).to.deep.equal({ value: 24, suffix: 'm' });
         expect(split('1d')).to.deep.equal({ value: 1, suffix: 'd' });
         expect(split('1.5h')).to.deep.equal({ value: 1.5, suffix: 'h' });
+        expect(split('420m')).to.deep.equal({ value: 420, suffix: 'm' });
     });
 
     it('should convert to correct mins depending on suffix', () => {
+        expect(stringToMins('0')).to.equal(0);
         expect(stringToMins('1m')).to.equal(1);
         expect(stringToMins('70m')).to.equal(70);
         expect(stringToMins('1h')).to.equal(60);
@@ -26,11 +28,12 @@ describe('time', () => {
     });
 
     it('should convert minutes to readable string', () => {
+        expect(minsToString(0)).to.equal('0 minutes');
         expect(minsToString(22)).to.equal('22 minutes');
         expect(minsToString(60)).to.equal('1 hour');
         expect(minsToString(90)).to.equal('1.5 hours');
         expect(minsToString(420)).to.equal('1 day');
-        expect(minsToString(600)).to.equal('1.43 days');
+        expect(minsToString(600)).to.equal('1.4 days');
         expect(minsToString(2100)).to.equal('1 week');
         expect(minsToString(3150)).to.equal('1.5 weeks');
     });

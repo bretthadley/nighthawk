@@ -3,7 +3,7 @@ export const DAYS_IN_WEEK = 5;
 const SUFFIXES = ['m', 'h', 'd', 'w'];
 
 export const split = val => {
-    const value = parseFloat(val.match(/[0-9]\D?[0-9]?/g)[0]);
+    const value = parseFloat(val.match(/[0-9]*\D?[0-9]?/g)[0]);
     const suffix = val.match(/[a-zA-Z]/g)[0];
     return { value, suffix };
 }
@@ -14,6 +14,7 @@ export const validate = val => {
 }
 
 export const stringToMins = val => {
+    if(val.startsWith('0')) return 0;
     const { suffix, value } = split(val);
     if (suffix === 'm') {
         return value;
@@ -34,12 +35,12 @@ export const minsToString = mins => {
         return (hours > 1) ? `${hours} hours` : `1 hour`;
     } else if((mins >= HOURS_IN_DAY * 60) && (mins < DAYS_IN_WEEK * HOURS_IN_DAY * 60)) {
         const hours = mins / 60;
-        const days = (hours / HOURS_IN_DAY).toFixed(2);
+        const days = (hours / HOURS_IN_DAY).toFixed(1);
         return (days > 1) ? `${days} days` : `1 day`;
     } else if(mins >= DAYS_IN_WEEK * HOURS_IN_DAY * 60) {
         const hours = mins / 60;
-        const days = (hours / HOURS_IN_DAY).toFixed(2);
-        const weeks = days / DAYS_IN_WEEK;
+        const days = (hours / HOURS_IN_DAY).toFixed(1);
+        const weeks = (days / DAYS_IN_WEEK).toFixed(1);
         return (weeks > 1) ? `${weeks} weeks` : `1 week`;
     }
 }

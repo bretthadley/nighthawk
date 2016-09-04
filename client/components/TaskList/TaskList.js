@@ -3,7 +3,7 @@ import cx from 'classnames';
 import { Grid, GridColumn, GridContainer } from '../Grid';
 import TaskListItem from './TaskListItem';
 import TaskListAddItem from './TaskListAddItem';
-import { stringToMins } from '../../../common/time'
+import { stringToMins } from '../../../common/time';
 
 export default class TaskList extends React.Component {
     static propTypes = {

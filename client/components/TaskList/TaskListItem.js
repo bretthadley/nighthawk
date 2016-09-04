@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import cx from 'classnames';
 import { Card, CardTitle, CardContent } from '../Card';
+import { minsToString } from '../../../common/time';
 
 export default class TaskListItem extends React.Component {
     static propTypes = {
@@ -18,8 +19,8 @@ export default class TaskListItem extends React.Component {
                 <CardTitle title={`${id} - ${title}`} />
                 <CardContent>
                     <p>{description}</p>
-                    <p>Estimated Time: {estimatedTime}</p>
-                    <p>Logged Time: {loggedTime}</p>
+                    <p>Estimated Time: {minsToString(estimatedTime)}</p>
+                    <p>Logged Time: {minsToString(loggedTime)}</p>
                 </CardContent>
             </Card>
         );
