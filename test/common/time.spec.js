@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { validate, stringToMins, split } from '../../common/time';
+import { HOURS_IN_DAY, DAYS_IN_WEEK, validate, stringToMins, split, minsToString } from '../../common/time';
 
 describe('time', () => {
     it('should return true when value ends in supported suffix', () => {
@@ -21,7 +21,17 @@ describe('time', () => {
         expect(stringToMins('70m')).to.equal(70);
         expect(stringToMins('1h')).to.equal(60);
         expect(stringToMins('1.5h')).to.equal(90);
-        expect(stringToMins('1d')).to.equal(60 * 7.5);
-        expect(stringToMins('1w')).to.equal(60 * 7.5 * 5);
+        expect(stringToMins('1d')).to.equal(60 * HOURS_IN_DAY);
+        expect(stringToMins('1w')).to.equal(60 * HOURS_IN_DAY * DAYS_IN_WEEK);
+    });
+
+    it('should convert minutes to readable string', () => {
+        expect(minsToString(22)).to.equal('22 minutes');
+        expect(minsToString(60)).to.equal('1 hour');
+        expect(minsToString(90)).to.equal('1.5 hours');
+        expect(minsToString(420)).to.equal('1 day');
+        expect(minsToString(600)).to.equal('1.43 days');
+        expect(minsToString(2100)).to.equal('1 week');
+        expect(minsToString(3150)).to.equal('1.5 weeks');
     });
 });
