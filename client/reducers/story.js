@@ -79,7 +79,6 @@ export const createStory = (sprintId, { title, description }) => {
 export function fetchStory(storyId) {
     return dispatch => {
         service.get(storyId).then(story => {
-            console.log('fetched story', story);
             dispatch(fetchedStory(story));
         }).catch(err => {
             dispatch(fetchStoryError(err));
