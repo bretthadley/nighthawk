@@ -21,9 +21,7 @@ const store = configureStore(browserHistory, window.__INITIAL_STATE__); // eslin
 const history = syncHistoryWithStore(browserHistory, store);
 
 listenToServer(feathersApp, store);
-
 // const sprintService = feathersApp.service('sprint');
-// const storyService = feathersApp.service('story');
 // const taskService = feathersApp.service('task');
 
 // Get all sprints up front.

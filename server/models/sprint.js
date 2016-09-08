@@ -22,19 +22,19 @@ const model = (sequelize) => {
        freezeTableName: true,
        classMethods: {
            associate(models) {
-               models.sprint.hasMany(models.story, {
-                   as: 'stories'
+               models.sprint.hasMany(models.task, {
+                   as: 'tasks'
                });
            }
        }
    });
 }
 
-const populateStories = (hook) => {
+const populateTasks = (hook) => {
     hook.params.sequelize = {
         include: [{
-            model: hook.app.get('models').story,
-            as: 'stories'
+            model: hook.app.get('models').task,
+            as: 'tasks'
         }]
     };
 
@@ -51,10 +51,10 @@ const hooks = {
     before: {
         all(hook) {},
         find(hook) {
-            populateStories(hook);
+            populateTasks(hook);
         },
         get(hook) {
-            populateStories(hook);
+            populateTasks(hook);
         },
         create(hook) {
             populateDefaultValuesWhenNotSpecified(hook);

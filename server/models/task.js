@@ -14,42 +14,71 @@ const model = (sequelize) => {
             type: Sequelize.STRING,
             allowNull: false
         },
+        type: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
+        // parentTaskId: {
+        //     type: Sequelize.INTEGER,
+        //     allowNull: true
+        // },
         estimatedTime: {
             type: Sequelize.INTEGER,
-            allowNull: false
+            allowNull: true
         },
         loggedTime: {
             type: Sequelize.INTEGER,
-            allowNull: false
+            allowNull: true
         }
     }, {
         freezeTableName: true,
         classMethods: {
             associate(models) {
-                models.task.belongsTo(models.story,
-                    {
-                        allowNull: false
-                    }
-                );
+                models.task.belongsTo(models.sprint, { allowNull: false });
+                models.task.belongsTo(models.task, { allowNull: true });
+                models.task.hasMany(models.task, { as: 'tasks' });
             }
         }
     });
 }
 
+const populateTasks = (hook) => {
+    hook.params.sequelize = {
+        include: [{
+            model: hook.app.get('models').task,
+            as: 'tasks'
+        }]
+    };
+
+    return hook;
+};
+
 const populateDefaultValuesWhenNotSpecified = hook => {
-    if(hook.data.estimatedTime === undefined) {
-        hook.data.estimatedTime = 0;
+    // hook.data.t
+
+    if(hook.data.type === 'task') {
+        if(hook.data.estimatedTime === undefined) {
+            hook.data.estimatedTime = 0;
+        }
+        if(hook.data.loggedTime === undefined) {
+            hook.data.loggedTime = 0;
+        }
     }
-    if(hook.data.loggedTime === undefined) {
-        hook.data.loggedTime = 0;
+
+    if(hook.data.type === 'story') {
+        // set story default values.
     }
 }
 
 const hooks = {
     before: {
         all: [],
-        find: [],
-        get: [],
+        find(hook) {
+            populateTasks(hook);
+        },
+        get(hook) {
+            populateTasks(hook);
+        },
         create(hook) {
             populateDefaultValuesWhenNotSpecified(hook);
         },

@@ -34,14 +34,14 @@ export default function reducer(state = defaultState, action) {
                     [action.payload.id]: action.payload
                 }
             };
-        case STORY_FETCHED:
-        case STORY_CREATED:
-            const storyId = action.payload.id;
-            const tasksFromApi = action.payload.tasks || [];
-            const tasksForStory = tasksFromApi.reduce((acc, task) => {
-                return { ...acc, tasks: [...acc.tasks, task.id], [task.id]: task };
-            }, { tasks: [] });
-            return { ...state, [storyId]: tasksForStory };
+        // case STORY_FETCHED:
+        // case STORY_CREATED:
+        //     const storyId = action.payload.id;
+        //     const tasksFromApi = action.payload.tasks || [];
+        //     const tasksForStory = tasksFromApi.reduce((acc, task) => {
+        //         return { ...acc, tasks: [...acc.tasks, task.id], [task.id]: task };
+        //     }, { tasks: [] });
+        //     return { ...state, [storyId]: tasksForStory };
         default:
             return state;
     }
