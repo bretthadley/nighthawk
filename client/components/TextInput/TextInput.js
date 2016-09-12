@@ -31,7 +31,7 @@ class TextInput extends React.Component {
             inputFocused: true
         });
 
-        if (this.props.handleOnFocus) this.props.handleOnFocus(e);
+        if (this.props.onFocus) this.props.onFocus(e);
     };
 
     handleBlur = (e) => {
@@ -39,7 +39,7 @@ class TextInput extends React.Component {
             inputFocused: false
         });
 
-        if (this.props.handleOnBlur) this.props.handleOnBlur(e, e.target.value);
+        if (this.props.onBlur) this.props.onBlur(e, e.target.value);
     };
 
     handleInputChange = (e) => {
@@ -49,7 +49,7 @@ class TextInput extends React.Component {
             isValid: valid,
             hasValue: valid
         });
-        if (this.props.handleOnChange) this.props.handleOnChange(e, e.target.value);
+        if (this.props.onChange) this.props.onChange(e, e.target.value);
     };
 
     render() {
@@ -60,6 +60,9 @@ class TextInput extends React.Component {
             name,
             labelText,
             required,
+            onChange,
+            onFocus,
+            onBlur,
             ...others
         } = this.props;
 

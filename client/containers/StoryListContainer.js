@@ -3,7 +3,7 @@ import { StoryList } from '../components/StoryList';
 import * as actions from '../reducers/story';
 
 const mapStateToProps = (state, props) => {
-    const story = state.story[props.sprintId] || {}
+    const story = state.story[props.sprintId] || {};
     const storyIds = story.stories || [];
     return {
         stories: storyIds.map(storyId => story[storyId])

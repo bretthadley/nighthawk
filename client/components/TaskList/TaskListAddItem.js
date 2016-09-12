@@ -46,7 +46,7 @@ class TaskListAddItem extends React.Component {
                         name="title"
                         id="title"
                         labelText="Task Title"
-                        handleOnBlur={this.onFieldChange('title')}
+                        onBlur={this.onFieldChange('title')}
                     />
                     <TextInput
                         componentType="textarea"
@@ -54,14 +54,14 @@ class TaskListAddItem extends React.Component {
                         id="description"
                         labelText="Task Description"
                         rows="2"
-                        handleOnBlur={this.onFieldChange('desc')}
+                        onBlur={this.onFieldChange('desc')}
                     />
                     <TextInput
                         required
                         name="estimatedTime"
                         id="estimatedTime"
                         labelText="Estimated Time"
-                        handleOnBlur={this.onFieldChange('estimatedTime')}
+                        onBlur={this.onFieldChange('estimatedTime')}
                     />
                 </CardContent>
                 <CardActions>

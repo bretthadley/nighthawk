@@ -13,7 +13,7 @@ import { SPRINTS_FETCHED } from './sprint';
     }
 */
 
-const service = server.service('story');
+const service = server.service('/api/task');
 
 // Actions
 export const STORY_CREATED = 'nighthawk/story/CREATED';
@@ -44,12 +44,12 @@ export default function reducer(state = defaultState, action) {
                         ...acc,
                         stories: [...acc.stories, story.id],
                         [story.id]: story
-                    }
+                    };
                 }, { stories: [] });
                 return {
                     ...state,
                     [sprint.id]: obj
-                }
+                };
             }, state);
         default:
             return state;
@@ -67,9 +67,12 @@ export const createStory = (sprintId, { title, description }) => {
         service.create({
             title,
             description,
-            sprintId
+            sprintId,
+            type: 'story'
         }, (error, story) => {
+            console.log('#wefwefewf');
             if (error) {
+                console.log('#wwwww', error);
                 dispatch(createStoryError(error));
             }
         });

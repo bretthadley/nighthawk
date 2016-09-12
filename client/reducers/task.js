@@ -14,7 +14,7 @@ import _ from 'lodash';
     }
 */
 
-const service = server.service('task');
+const service = server.service('/api/task');
 
 // Actions
 export const TASK_CREATED = 'nighthawk/task/CREATED';

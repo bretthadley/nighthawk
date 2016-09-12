@@ -10,7 +10,7 @@ import server from '../feathers/configureFeathers';
     }
 */
 
-const service = server.service('sprint');
+const service = server.service('/api/sprint');
 
 // Actions
 export const SPRINT_CREATED = 'nighthawk/sprint/CREATED';

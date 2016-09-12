@@ -1,7 +1,7 @@
 /**
  * Created by Brett Hadley on 13/07/2016.
  */
-const services = ['sprint', 'task'];
+const services = ['api/sprint', 'api/task'];
 const events = ['created', 'updated', 'removed', 'serviceError'];
 
 const resourceActions = {
@@ -24,7 +24,7 @@ export default function listenToServer(app, store) {
         events.forEach((event) => {
             service.on(event, (payload) => {
                 console.log(`EVENT FROM SERVER ${serviceName} ${event}`);
-                store.dispatch(resourceActions[event](serviceName, payload));
+                store.dispatch(resourceActions[event](serviceName.replace('api/', ''), payload));
             });
         });
     });

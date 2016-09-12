@@ -48,7 +48,7 @@ class SprintListAddItem extends React.Component {
                         name="title"
                         id="title"
                         labelText="Sprint Title"
-                        handleOnBlur={this.onFieldChange('title')}
+                        onBlur={this.onFieldChange('title')}
                     />
                     <TextInput
                         componentType="textarea"
@@ -56,7 +56,7 @@ class SprintListAddItem extends React.Component {
                         id="description"
                         labelText="Sprint Description"
                         rows="2"
-                        handleOnBlur={this.onFieldChange('desc')}
+                        onBlur={this.onFieldChange('desc')}
                     />
                 </CardContent>
                 <CardActions>

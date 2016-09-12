@@ -18,10 +18,10 @@ const model = (sequelize) => {
             type: Sequelize.STRING,
             allowNull: false
         },
-        // parentTaskId: {
-        //     type: Sequelize.INTEGER,
-        //     allowNull: true
-        // },
+        parentTaskId: {
+            type: Sequelize.INTEGER,
+            allowNull: true
+        },
         estimatedTime: {
             type: Sequelize.INTEGER,
             allowNull: true
@@ -35,8 +35,11 @@ const model = (sequelize) => {
         classMethods: {
             associate(models) {
                 models.task.belongsTo(models.sprint, { allowNull: false });
-                models.task.belongsTo(models.task, { allowNull: true });
-                models.task.hasMany(models.task, { as: 'tasks' });
+                models.task.hasMany(models.task, {
+                    allowNull: true,
+                    as: 'tasks',
+                    foreignKey : 'parentTaskId'
+                });
             }
         }
     });

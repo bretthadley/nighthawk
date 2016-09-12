@@ -10,7 +10,7 @@ const mapStateToProps = state => {
     const sprints = state.sprint.sprints.map(sprintId => {
         return {
             ...state.sprint[sprintId],
-            stories:  _.get(state,`story.${sprintId}.stories`) || []
+            stories: _.get(state, `story.${sprintId}.stories`) || []
         };
     });
     return { sprints };

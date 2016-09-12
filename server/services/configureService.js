@@ -8,7 +8,7 @@ export default ({ serviceName, model, hooks }, app) => {
             max: 50
         }
     };
-    const name = `/${serviceName}`;
+    const name = `/api/${serviceName}`;
     console.log('Configuring service for', name);
 
     // Initialize our service with any options it requires

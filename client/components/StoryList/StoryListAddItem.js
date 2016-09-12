@@ -45,7 +45,7 @@ class StoryListAddItem extends React.Component {
                         name="title"
                         id="title"
                         labelText="Story Title"
-                        handleOnBlur={this.onFieldChange('title')}
+                        onBlur={this.onFieldChange('title')}
                     />
                     <TextInput
                         componentType="textarea"
@@ -53,7 +53,7 @@ class StoryListAddItem extends React.Component {
                         id="description"
                         labelText="Story Description"
                         rows="2"
-                        handleOnBlur={this.onFieldChange('desc')}
+                        onBlur={this.onFieldChange('desc')}
                     />
                 </CardContent>
                 <CardActions>
