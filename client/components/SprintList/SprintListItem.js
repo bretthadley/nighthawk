@@ -12,7 +12,7 @@ class SprintListItem extends React.Component {
     };
 
     render() {
-        const { id, title, description, stories, className } = this.props;
+        const { id, title, description, stories, className, state } = this.props;
         const classnames = cx({
             [className]: className
         });
@@ -23,6 +23,7 @@ class SprintListItem extends React.Component {
                 <CardContent>
                     <p>{description}</p>
                     <p>Number of stories: {stories.length}</p>
+                    <p>State: {state}</p>
                 </CardContent>
             </Card>
         );

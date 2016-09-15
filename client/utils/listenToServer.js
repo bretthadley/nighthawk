@@ -2,7 +2,7 @@
  * Created by Brett Hadley on 13/07/2016.
  */
 const services = ['api/sprint', 'api/task'];
-const events = ['created', 'updated', 'removed', 'serviceError'];
+const events = ['created', 'updated', 'removed', 'patched', 'serviceError'];
 
 const resourceActions = {
     created: (type, payload) => ({
@@ -15,6 +15,10 @@ const resourceActions = {
     }),
     removed: (type) => ({
         type: require(`../reducers/${type}`)[`${type.toUpperCase()}_REMOVED`],
+    }),
+    patched: (type, payload) => ({
+        type: require(`../reducers/${type}`)[`${type.toUpperCase()}_PATCHED`],
+        payload
     })
 };
 

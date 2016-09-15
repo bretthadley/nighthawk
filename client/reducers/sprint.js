@@ -19,6 +19,8 @@ export const SPRINT_FETCHED = 'nighthawk/sprint/FETCHED';
 export const SPRINT_FETCH_ERROR = 'nighthawk/sprint/FETCH_ERROR';
 export const SPRINTS_FETCHED = 'nighthawk/sprints/FETCHED';
 export const SPRINTS_FETCH_ERROR = 'nighthawk/sprints/FETCH_ERROR';
+export const SPRINT_PATCHED = 'nighthawk/sprint/PATCHED';
+export const SPRINT_PATCH_ERROR = 'nighthawk/sprint/PATCH_ERROR';
 
 // Reducer
 export const defaultState = {
@@ -27,6 +29,11 @@ export const defaultState = {
 
 export default function reducer(state = defaultState, action) {
     switch (action.type) {
+        case SPRINT_PATCHED:
+            return {
+                ...state,
+                [action.payload.id]: action.payload
+            };
         case SPRINT_CREATED:
             return {
                 ...state,
@@ -47,36 +54,28 @@ export default function reducer(state = defaultState, action) {
 }
 
 // Action Creators
-export function createdSprint(payload) {
-    return {
-        type: SPRINT_CREATED,
-        payload
-    };
-}
-export function createSprintError(payload) {
-    return {
-        type: SPRINT_CREATE_ERROR,
-        payload
-    };
-}
-const fetchedSprint = payload => ({ type: SPRINT_FETCHED, payload });
-const fetchSprintError = payload => ({ type: SPRINT_FETCH_ERROR, payload });
+export const createdSprint = payload => ({ type: SPRINT_CREATED, payload });
+export const createSprintError = payload => ({ type: SPRINT_CREATE_ERROR, payload });
 export const fetchedSprints = payload => ({ type: SPRINTS_FETCHED, payload });
 const fetchedSprintsError = payload => ({ type: SPRINTS_FETCH_ERROR, payload });
+const fetchedSprint = payload => ({ type: SPRINT_FETCHED, payload });
+const fetchSprintError = payload => ({ type: SPRINT_FETCH_ERROR, payload });
+const patchedSprint = payload => ({ type: SPRINT_PATCHED, payload });
+const patchSprintError = payload => ({ type: SPRINT_PATCH_ERROR, payload });
 
 // Async Actions
 export function createSprint({ title, description }) {
     return dispatch => {
-        service.create({
-            title,
-            description
-        }, (error, sprint) => { // eslint-disable-line
-            if (error) {
-                dispatch(createSprintError(error));
-            }
-            // } else {
-            //     dispatch(createdSprint(sprint));
-            // }
+        service.create({ title, description}).catch(err => {
+            dispatch(createSprintError(error));
+        });
+    };
+}
+
+export function patchSprint(sprintId, data) {
+    return dispatch => {
+        service.patch(sprintId, data).catch(err => {
+            dispatch(patchSprintError(err));
         });
     };
 }

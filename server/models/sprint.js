@@ -2,6 +2,7 @@ const Sequelize = require('sequelize');
 const globalHooks = require('../hooks/index');
 const feathersHooks = require('feathers-hooks');
 const auth = require('feathers-authentication').hooks;
+import { SPRINT } from '../../common/constants';
 
 const NAME = 'sprint';
 const model = (sequelize) => {
@@ -43,7 +44,7 @@ const populateTasks = (hook) => {
 
 const populateDefaultValuesWhenNotSpecified = hook => {
     if(hook.data.state === undefined) {
-        hook.data.state = 'planning';
+        hook.data.state = SPRINT.PLANNING;
     }
 }
 
