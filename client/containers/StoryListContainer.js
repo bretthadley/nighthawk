@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { StoryList } from '../components/StoryList';
-import * as actions from '../reducers/story';
+import * as actions from '../reducers/task';
 
 const mapStateToProps = (state, props) => {
     const story = state.story[props.sprintId] || {};

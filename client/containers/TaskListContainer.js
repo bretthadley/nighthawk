@@ -3,10 +3,6 @@ import { TaskList } from '../components/TaskList';
 import * as actions from '../reducers/task';
 
 const mapStateToProps = (state, props) => {
-
-    console.log(state);
-    console.log(props);
-
     const tasksForStory = state.task[props.storyId] || {};
     const taskIds = tasksForStory.tasks || [];
     return {

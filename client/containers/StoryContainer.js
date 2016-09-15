@@ -3,7 +3,7 @@ import { StoryPage } from '../pages';
 
 const mapStateToProps = (state, props) => {
     const storiesForSprint = state.story[props.routeParams.sprintId] || {};
-    const story = storiesForSprint[props.routeParams.storyId] || {};
+    const story = storiesForSprint[props.routeParams.taskId] || {};
     return { story };
 };
 

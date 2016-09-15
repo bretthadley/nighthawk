@@ -61,7 +61,7 @@ export function createSprintError(payload) {
 }
 const fetchedSprint = payload => ({ type: SPRINT_FETCHED, payload });
 const fetchSprintError = payload => ({ type: SPRINT_FETCH_ERROR, payload });
-const fetchedSprints = payload => ({ type: SPRINTS_FETCHED, payload });
+export const fetchedSprints = payload => ({ type: SPRINTS_FETCHED, payload });
 const fetchedSprintsError = payload => ({ type: SPRINTS_FETCH_ERROR, payload });
 
 // Async Actions

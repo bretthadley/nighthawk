@@ -16,7 +16,7 @@ class StoryListItem extends React.Component {
 
         return (
             <Card className={classnames}>
-                <CardTitle title={`${id} - ${title}`} linkTo={`/team/s/${sprintId}/S-${id}`} />
+                <CardTitle title={`${id} - ${title}`} linkTo={`/team/s/${sprintId}/t/${id}`} />
                 <CardContent>
                     <p>{description}</p>
                 </CardContent>
