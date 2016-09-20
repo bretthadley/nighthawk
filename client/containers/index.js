@@ -11,3 +11,4 @@ export SprintListContainer from './SprintListContainer';
 export StoryListContainer from './StoryListContainer';
 export TaskListContainer from './TaskListContainer';
 export StoryContainer from './StoryContainer';
+export SprintPlanningContainer from './SprintPlanningContainer';

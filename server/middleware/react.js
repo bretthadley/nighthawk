@@ -4,7 +4,6 @@ module.exports = () => {
         if (req.originalUrl.includes('/api/')) {
             next();
         }
-
         res.sendFile('index.html', { root: req.app.get('public') });
     };
 }
