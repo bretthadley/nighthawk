@@ -1,0 +1,18 @@
+@import "../../../assets/styles/base";
+
+.overlay {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    opacity: 0;
+    will-change: opacity;
+}
+
+.overlay--dark {
+    background-color: rgba(0,0,0,0.8);
+}
+
+.overlay--light {
+    background-color: rgba(255,255,255,0.95);
+}
