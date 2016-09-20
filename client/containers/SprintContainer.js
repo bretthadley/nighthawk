@@ -6,7 +6,7 @@ import { SprintPage } from '../pages';
 import { patchSprint } from '../reducers/sprint';
 
 const mapStateToProps = (state, props) => {
-    return { sprint : state.sprint[props.routeParams.sprintId] };
+    return { sprint: state.sprint[props.routeParams.sprintId] };
 }
 
 const mapDispatchToActions = { patchSprint };
