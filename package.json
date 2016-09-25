@@ -1,8 +1,11 @@
 {
-  "name": "hello",
+  "name": "nighthawk",
   "private": true,
   "version": "0.0.1",
   "main": "dist/app",
+  "engines" : {
+    "node": "^6.6.0"
+  },
   "scripts": {
     "lint": "eslint client",
     "test": "mocha --compilers js:babel-register,js:./test/setup.js './test/**/*.spec.js'",
@@ -12,7 +15,8 @@
     "dev": "npm run start",
     "start": "babel-node tools/run start --env=development --watch",
     "check": "npm run lint && npm run test",
-    "validate": "npm ls"
+    "validate": "npm ls",
+    "deploy": "gcloud app deploy"
   },
   "dependencies": {
     "babel-polyfill": "^6.9.1",
