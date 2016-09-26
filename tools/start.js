@@ -14,7 +14,6 @@ import copy from './copy';
 async function start(options) {
     await run(clean);
     await run(copy.bind(undefined, options));
-    await run(server.bind(undefined, options));
     await run(browserSync.bind(undefined, options));
 }
 
