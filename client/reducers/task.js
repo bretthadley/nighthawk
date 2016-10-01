@@ -80,6 +80,7 @@ export const createTask = (parentTaskIdOrSprintId, { title, description, estimat
     return dispatch => {
         let payload = { title, description, type };
         if (type === 'story') {
+            console.log('creating story, sprintId:', parentTaskIdOrSprintId);
             payload = { ...payload, sprintId: parentTaskIdOrSprintId };
         } else {
             payload = { ...payload, parentTaskId: parentTaskIdOrSprintId, estimatedTime };
