@@ -6,7 +6,8 @@ const mapStateToProps = (state, props) => {
     const story = state.story[props.sprintId] || {};
     const storyIds = story.stories || [];
     return {
-        stories: storyIds.map(storyId => story[storyId])
+        stories: storyIds.map(storyId => story[storyId]),
+        sprintId: props.sprintId
     };
 };
 

@@ -13,7 +13,7 @@
     "coverage": "istanbul cover node_modules/mocha/bin/_mocha -- --compilers js:babel-core/register,js:./test/setup.js 'test/**/*.spec.js' 'client/components/**/*.spec.js'",
     "build": "babel-node tools/run build --env=production",
     "dev": "npm run start",
-    "start": "babel-node tools/run start --env=development --watch --https",
+    "start": "babel-node tools/run start --env=development --watch",
     "check": "npm run lint && npm run test",
     "validate": "npm ls",
     "deploy": "gcloud app deploy"

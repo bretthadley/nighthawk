@@ -25,7 +25,7 @@ export default class SprintPlanning extends Component {
         return (
             <div className={classnames}>
                 <h1>SPRINT PLANNINNG</h1>
-                <StoryListContainer />;
+                <StoryListContainer sprintId={this.props.sprintId} />
             </div>
         );
     }

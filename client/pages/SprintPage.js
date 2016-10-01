@@ -38,6 +38,8 @@ export default class SprintPage extends Component {
             sprint
         } = this.props;
 
+        if(!sprint) return null;
+
         const classnames = cx({
             'sprint-page': true,
             [className]: className

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { SprintPlanning } from '../components/SprintPlanning';
 
 const mapStateToProps = (state, props) => {
-    return { ...props };
+    return { ...props, sprintId: props.routeParams.sprintId };
 };
 
 const mapDispatchToActions = {};

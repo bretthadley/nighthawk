@@ -22,7 +22,7 @@ function browserSync(options) {
 
         bs.init({
             proxy: {
-                target: 'https://nighthawk-144220.appspot.com',
+                target: `http://localhost:${buildConfig.serverPort}`,
                 middleware: [wpDevMiddlewarte, wpHotMiddleware]
             },
             port: buildConfig.serverPort + 1
