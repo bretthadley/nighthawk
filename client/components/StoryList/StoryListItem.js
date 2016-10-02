@@ -16,7 +16,7 @@ class StoryListItem extends React.Component {
 
         return (
             <Card className={classnames} expandable={true} trigger="click">
-                <CardTitle title={`${id} - ${title}`} linkTo={`/team/s/${sprintId}/t/${id}`} includeInExpanding={false}/>
+                <CardTitle title={`${id} - ${title}`} subtitle={description} linkTo={`/team/s/${sprintId}/t/${id}`} includeInExpanding={false}/>
                 <CardContent>
                     <p>{description}</p>
                     <p>{description}</p>

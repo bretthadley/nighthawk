@@ -35,9 +35,12 @@
 }
 
 .card-title {
-    .title,
+    .title {
+        margin: 0;
+    }
     .subtitle {
         margin: 0;
+        padding-left: 25px;
     }
 }
 
