@@ -18,7 +18,8 @@ export default class CardTitle extends Component {
         subtitle: PropTypes.oneOfType([
             PropTypes.string,
             PropTypes.node
-        ])
+        ]),
+        linkTo: PropTypes.string,
     };
 
     static defaultProps = {
@@ -68,6 +69,7 @@ export default class CardTitle extends Component {
             subtitle,
             includeInExpanding, // eslint-disable-line
             children,
+            linkTo,
             ...others
         } = this.props;
         const Element = componentType;
