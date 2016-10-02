@@ -146,7 +146,14 @@ export default class Card extends Component {
         const newChildren = expandable ? this.formatExpandingChildren(children) : children;
 
         return (
-            <Element className={classnames}>
+            <Element
+                className={classnames}
+                onClick={this.handleClick}
+                onFocus={this.handleFocus}
+                onBlur={this.handleFocus}
+                onMouseEnter={this.handleHover}
+                onMouseLeave={this.handleHover}
+            >
                 {newChildren}
             </Element>
         );

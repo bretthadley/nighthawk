@@ -23,7 +23,7 @@ export default class StoryList extends React.Component {
 
     renderAddNewStory() {
         return (
-            <GridColumn xs="one-third" sm="one-quarter">
+            <GridColumn>
                 <StoryListAddItem addStory={this.addStory} />
             </GridColumn>
         );
@@ -31,7 +31,7 @@ export default class StoryList extends React.Component {
 
     renderStories(story, i) {
         return (
-            <GridColumn key={i} xs="one-third" sm="one-quarter">
+            <GridColumn key={i}>
                 <StoryListItem {...story} />
             </GridColumn>
         );
