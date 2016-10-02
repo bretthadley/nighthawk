@@ -16,7 +16,6 @@ export default class TaskList extends React.Component {
     };
 
     addTask = (title, description, estimatedTime) => {
-        console.log(this.props);
         this.props.createTask(
             this.props.storyId,
             { title, description, type: 'task', estimatedTime: stringToMins(estimatedTime) }
